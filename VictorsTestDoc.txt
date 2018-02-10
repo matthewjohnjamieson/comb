@@ -4,3 +4,5 @@ thisSentenceIsFalse = false;
 if(pullRequest.isAccepted()){
   thisSentenceIsFalse = true;
 }
+
+this is weird
