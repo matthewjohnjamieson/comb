@@ -2,23 +2,16 @@
 Class for Comb hex cells
 meant to function as the basic button class, particularly for the main chord grid.
 
-NOTE: this mouseover detection is ULTRA SLOW PERFORMANCE and needs to be replaced.
 HOW MOUSEOVER DETECTION WORKS:
 this class detects mouseovers with a "map" color on each shape, which is displayed before the
 user viewable display color. This color is checked against the color under the mouse when the 
-mouse is pressed (mouseIsPressed boolean check). The acutal map color doesn't matter, as long as
-it a) isn't the same color as the background, and b) the display color of the clicked button changes
-when it is clicked. This is because the event checking is done during the Cell's display stage, 
-between the mapDisplay and the user display. Effectivly a "Just In Time" event check. Cells drawn earlier
-see the mouse as hovering over the background color. Cells drawn later see the mouse as hovering over the 
-user displayable color. In this way, each button can detect mouse-over without having to be assigned 
-unique map colors, nor some elaborite coordinate range/distance formula system. I've started calling this the
-"Duckhunt" pattern.
+mouse is pressed (mouseIsPressed boolean check). Each Clickable shape displays with a different map color
+that serves as an identifier.
 
 CAN:
 -display basic shape with fill color
 -detect mouseIsPressed over individual Cells, and respond accordingly. Changes color atm
--keep track of how many cells their are, and each cell is numbered in draw order currently
+-keep track of how many cells there are, and each cell is numbered in draw order currently
 -be used publicly without exposing implementation
 CAN'T:
 -model components are mostly unimplemented
@@ -30,17 +23,16 @@ p5.js
 */
 
 
-let numberOfCells = 0;
-
 //view: responsible for displayable tasks ie drawing to the canvas
 //displayable tasks include user-viewable and non-user-viewable (mouseover map display)
-class CellView{
+class CellView extends Displayable{
   constructor(x,y,r,displayColor,mapCol){
+    super();
     this.x = x;//coords
     this.y = y;
     this.r = r;//radius
     this.cellText = '';//text to display in a cell
-    this.mapColor = red(numberOfCells);//this is the hit map color to detect mouseover events
+    this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
   }
@@ -59,12 +51,14 @@ class CellView{
 
   //draw mouseover detection map layer
   displayMap(){
+    noStroke();
     fill(this.mapColor);
     this.polygon(this.x,this.y,this.r,this.SIDES); 
   }
 
   //draw user viewable layer
   display(){
+    stroke('GRAY');
     fill(this.displayColor);
     this.polygon(this.x,this.y,this.r,this.SIDES);
     fill(0);
@@ -80,18 +74,17 @@ class CellView{
 //eg: when a button is pressed it must both notify the view to alter display
 //and model to signal the audio engine
 class CellController{
-  constructor(v,m){
+  constructor(v,m,id){
     this.cellView = v;
     this.cellModel = m;
     this.cellData = this.cellModel.data;
     this.cellView.cellText = this.cellModel.chord.root + this.cellModel.chord.qual;//text to display in a cell
-    this.cellNumber = numberOfCells;//cellNumber is a global variable to keep # of cells
-    numberOfCells++; 
+    this.cellNumber = id;//cellNumber is a global variable to keep # of cells
+    // numberOfCells++; 
   }
 
   eventClickedMouseOver(){
     if(mouseIsPressed && red( colorUnderMouse() /* get(mouseX, mouseY)*/ ) == red(this.cellView.mapColor)){
-      console.log("event triggered!");
       this.cellView.displayColor = 'BLACK';
       console.log(this.cellNumber);//print the current cell number
     }else{
@@ -113,11 +106,12 @@ class CellModel{
 
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
-class Cell{
+class Cell extends Clickable{
   constructor(x,y,r,displayColor,mapCol,chord){
-    this.cellView = new CellView(x,y,r,displayColor,(mapCol == null ? 'WHITE' : mapCol));
+    super();
+    this.cellView = new CellView(x,y,r,displayColor,this.clickMapColor);
     this.cellModel = new CellModel(chord);
-    this.cellController = new CellController(this.cellView,this.cellModel);
+    this.cellController = new CellController(this.cellView,this.cellModel,this.clickID);
   }
 
   displayMap(){

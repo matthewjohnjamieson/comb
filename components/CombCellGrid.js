@@ -13,11 +13,12 @@ CAN'T:
 DEPENDS ON: CombCell.js
 */
 
-class CellGrid{
+class CellGrid extends Displayable{
   constructor(x,y,cellSize,key){
+    super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
-    this.SPACING = 1.75; //space between cells in grid
+    this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
     this.cells = this.makeCells();
