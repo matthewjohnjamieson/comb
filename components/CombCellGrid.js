@@ -1,11 +1,11 @@
 /*
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
-Is polite enough to return the draw point to where it was before the shape was
 
 CAN:
 -display a grid of cells to represent a key
 -assign chords to cells (currently just strings rather than actual chord objects)
+-be a good citizen: returns the draw point to it's position before the grid is drawn 
 
 CAN'T:
 -do much yet
@@ -27,7 +27,6 @@ class CellGrid extends Displayable{
   //builds a grid of displayable cells starting from the middle of the grid
   makeCells(startX, startY){
     let tempArray = []; //stored array of new cells   
-    const SIDES = 6; //# of sides in a cell
 
     //these variables are used to assign chords to cells based on key
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
@@ -82,15 +81,17 @@ class CellGrid extends Displayable{
   }
 
   displayMap(){
+    push();
     translate(this.x,this.y);//put the grid where it's at
     this.cells.map(cell => cell.displayMap());
+    pop();
   }
 
-  //are push()/pop() needed here?
+  //push() and pop() are needed here to return the draw point to default (or whatever it was before) 
   display(){
-    //push();
+    push(); // saves the current draw point
     translate(this.x,this.y);//put the grid where it's at
     this.cells.map(cell => cell.display());
-    //pop();
+    pop(); // returns the draw point to when it was saved.
   }
 }
