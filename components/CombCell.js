@@ -10,16 +10,15 @@ that serves as an identifier.
 
 CAN:
 -display basic shape with fill color
--detect mouseIsPressed over individual Cells, and respond accordingly. Changes color atm
--keep track of how many cells there are, and each cell is numbered in draw order currently
--be used publicly without exposing implementation
+-detect mouseIsPressed over individual Cells, and respond accordingly. Changes color.
+-keep track of how many cells there are, and each cell is numbered in draw order
+
 CAN'T:
 -model components are mostly unimplemented
 -play chords yet
 
 DEPENDS ON:
 p5.js
-
 */
 
 
@@ -51,19 +50,19 @@ class CellView extends Displayable{
 
   //draw mouseover detection map layer
   displayMap(){
-    noStroke();
+    noStroke(); //turns off outlines (borders can interfere with detection)
     fill(this.mapColor);
     this.polygon(this.x,this.y,this.r,this.SIDES); 
   }
 
   //draw user viewable layer
   display(){
-    stroke('GRAY');
+    stroke('GRAY'); //turn outlines back on for hex display
     fill(this.displayColor);
     this.polygon(this.x,this.y,this.r,this.SIDES);
-    fill(0);
+    fill(0); //text fill color
     textFont('Verdana');
-    textSize(this.r / 2.5);
+    textSize(this.r / 2.5); //text size is relative to the radius
     textAlign(CENTER);
     text(this.cellText,this.x,this.y + (this.r / 7));
   }

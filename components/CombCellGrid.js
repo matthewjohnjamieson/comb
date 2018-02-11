@@ -7,9 +7,6 @@ CAN:
 -assign chords to cells (currently just strings rather than actual chord objects)
 -be a good citizen: returns the draw point to it's position before the grid is drawn 
 
-CAN'T:
--do much yet
-
 DEPENDS ON: CombCell.js
 */
 
@@ -80,6 +77,7 @@ class CellGrid extends Displayable{
     return tempArray;
   }
 
+  //push() and pop() are needed here to return the draw point to default (or whatever it was before)
   displayMap(){
     push();
     translate(this.x,this.y);//put the grid where it's at

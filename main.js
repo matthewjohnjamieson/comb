@@ -1,11 +1,8 @@
-p5.disableFriendlyErrors = true;
-
-
+//p5.disableFriendlyErrors = true; //suppresses errors when you overwrite a p5.js function. probably just leave it commented out 
 
 /*
 main for Comb project.
 */
-
 
 
 /***  processing functions ***/
@@ -23,23 +20,24 @@ function setup() {
   screens[(screens[1] ? 1 : 0)].displayMap();
   
   loadPixels(); //load the display into the pixel buffer
-
 }
 
 function draw() {
   screens[(screens[1] ? 1 : 0)].display();
 
-  if(mouseIsPressed){
-    console.log(colorUnderMouse());
-  }
+  // DEBUGGING: display color under mouse when clicked 
+  // if(mouseIsPressed){
+  //   console.log(colorUnderMouse());
+  // }
 }
 
 // function mouseClicked(){
 //   mouseWasClicked = true;
 // }
+
 /*** ^ processing functions ^ ***/
 
-
+//https://p5js.org/reference/#/p5.Image/pixels
 function colorUnderMouse(){
   let x,y,d;
   let off, components;
