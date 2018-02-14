@@ -5,4 +5,17 @@ if(pullRequest.isAccepted()){
   thisSentenceIsFalse = true;
 }
 
+<<<<<<< HEAD
 i want to push from local master to remote victorsBranch
+=======
+1
+2
+3
+
+AHA A CHANGE! WITH ANOTHER LOCAL CHANGE!!!!
+ now a local change...
+
+testing
+>TAIL ?
+
+idk what was in the original or not
