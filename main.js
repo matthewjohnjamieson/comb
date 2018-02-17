@@ -13,6 +13,7 @@ let screens = [];
 let map;
 
 function setup() {
+  pixelDensity(1); // set pix density for high dens displays
   frameRate(30);
   createCanvas(1440,900);
   screens[0] = new Screen(128, [(new CellGrid(width/2,height/2,30,'C')), /*(new CellGrid(width/6,height/6,30,'D'))*/ ]); //main grid
@@ -43,7 +44,7 @@ function colorUnderMouse(){
   let off, components;
   x = mouseX;
   y = mouseY;
-  d = pixelDensity();
+  d = 1; //depreciated: pixelDensity(); should now always be 1
   off = (y * width + x) * d * 4;
   components = [
     pixels[off],
