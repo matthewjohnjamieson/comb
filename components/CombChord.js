@@ -18,8 +18,7 @@ class Chord{
     this.qual = (qual == null ? '' : qual);
     this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.rootMidiNote + 4);
     this.fifth = this.rootMidiNote + 7;
-    this.synth = synth;   
-     
+    this.synth = synth;     
   }
   
   play(){
