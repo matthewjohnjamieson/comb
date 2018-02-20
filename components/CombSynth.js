@@ -7,19 +7,31 @@ future: add an amp envelope, this will need a gui at some point to edit it's att
 class Synth{
   constructor(){
     this.voices = [
-      (new p5.SinOsc()),
-      (new p5.SinOsc()),
-      (new p5.SinOsc())
+      (new p5.Oscillator()),
+      (new p5.Oscillator()),
+      (new p5.Oscillator())
     ]; 
+
+    this.voices[0].setType('sine');
+    this.voices[1].setType('sine');
+    this.voices[2].setType('sine');
   }
 
   play(root,third,fifth){ 
+
+    this.voices.map(v => v.start());
+
+    this.voices[0].amp(0.5);
+    this.voices[1].amp(0.5);
+    this.voices[2].amp(0.5);
+
     this.voices[0].freq(midiToFreq(root));
     this.voices[1].freq(midiToFreq(third));
     this.voices[2].freq(midiToFreq(fifth));
-    
-    this.voices.map(v => v.start())
-  }
+
+  
+    }
+  
 
   stop(){
     this.voices.map(v => v.stop());
