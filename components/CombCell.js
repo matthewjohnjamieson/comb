@@ -84,17 +84,19 @@ class CellController{
   }
 
   eventClickedMouseOver(){
-    if(
-      (mouseIsPressed && red(colorUnderMouse()) == red(this.cellView.mapColor)) && /* mouse press over cell */
-        (this.isClicked === false)){
+    if((mouseIsPressed &&
+          red(colorUnderMouse()) == red(this.cellView.mapColor)) && /* mouse press over cell */
+            (this.isClicked === false)){
+      
       this.cellView.displayColor = 'BLACK';
       console.log(this.cellNumber);//print the current cell number
       this.cellModel.chord.play();
       this.isClicked = true;
-    }else if(
-      (red(colorUnderMouse()) != red(this.cellView.mapColor)) || /* mouse dragged off cell */
-             (!mouseIsPressed && /* mouse release */
-              (this.isClicked === true))){ 
+    }
+    else if((red(colorUnderMouse()) != red(this.cellView.mapColor)) || /* mouse dragged off cell */
+              (!mouseIsPressed &&  /* mouse released */
+                (this.isClicked === true))){ 
+      
       this.cellView.displayColor = 'WHITE';
       this.cellModel.chord.stop();
       this.isClicked = false;
