@@ -32,9 +32,9 @@ function draw() {
   // }
 }
 
-// function mouseClicked(){
-//   mouseWasClicked = true;
-// }
+function mouseClicked(){
+  mouseWasClicked = true;
+}
 
 /*** ^ processing functions ^ ***/
 

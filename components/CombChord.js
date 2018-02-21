@@ -16,13 +16,14 @@ class Chord{
     this.root = root;
     this.rootMidiNote = octave[root];
     this.qual = (qual == null ? '' : qual);
-    this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.root + 4);
-    this.fifth = this.root + 7;
-    this.synth = synth;    
+    this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.rootMidiNote + 4);
+    this.fifth = this.rootMidiNote + 7;
+    this.synth = synth;     
   }
   
   play(){
-    this.synth.play(this.root,this.third,this.fifth);
+    console.log(this.root, this.third, this.fifth);
+    this.synth.play(this.rootMidiNote,this.third,this.fifth);
   }
 
   stop(){
