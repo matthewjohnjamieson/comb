@@ -15,7 +15,7 @@ let map;
 function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30);
-  createCanvas(1440,900);
+  createCanvas(2480,1152);
   screens[0] = new Screen(128, [(new CellGrid(width/2,height/2,30,'C')), /*(new CellGrid(width/6,height/6,30,'D'))*/ ]); //main grid
   //screens[1] = new Screen(128, [(new Cell(width/2,height/2,100,255,255,(new Chord("D", "min", "7"))))]); //playin' around screen
   screens[(screens[1] ? 1 : 0)].displayMap();
