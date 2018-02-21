@@ -79,15 +79,27 @@ class CellController{
     this.cellData = this.cellModel.data;
     this.cellView.cellText = this.cellModel.chord.root + this.cellModel.chord.qual;//text to display in a cell
     this.cellNumber = id;//cellNumber is a global variable to keep # of cells
+    this.isClicked = false;
     // numberOfCells++; 
   }
 
   eventClickedMouseOver(){
-    if(mouseIsPressed && red( colorUnderMouse() /* get(mouseX, mouseY)*/ ) == red(this.cellView.mapColor)){
+    if((mouseIsPressed &&
+          red(colorUnderMouse()) == red(this.cellView.mapColor)) && /* mouse press over cell */
+            (this.isClicked === false)){
+      
       this.cellView.displayColor = 'BLACK';
       console.log(this.cellNumber);//print the current cell number
-    }else{
+      this.cellModel.chord.play();
+      this.isClicked = true;
+    }
+    else if((red(colorUnderMouse()) != red(this.cellView.mapColor)) || /* mouse dragged off cell */
+              (!mouseIsPressed &&  /* mouse released */
+                (this.isClicked === true))){ 
+      
       this.cellView.displayColor = 'WHITE';
+      this.cellModel.chord.stop();
+      this.isClicked = false;
     }
   }
 }
