@@ -66,6 +66,7 @@ class CellGrid extends Displayable{
     //"translate" variables for upper cluster by adding these variables to the coords
     let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
     let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
+    
     //upper cluster. fancy fractions are for the internal trig junk    
     for(var i = 5/6; i > 1/6; i -= 1/3){ 
       tempArray.push(buildCell(
@@ -88,8 +89,11 @@ class CellGrid extends Displayable{
   //push() and pop() are needed here to return the draw point to default (or whatever it was before) 
   display(){
     push(); // saves the current draw point
+    
     translate(this.x,this.y);//put the grid where it's at
+    //rotate(-PI/6);
     this.cells.map(cell => cell.display());
+
     pop(); // returns the draw point to when it was saved.
   }
 }

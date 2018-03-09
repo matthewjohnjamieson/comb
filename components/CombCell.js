@@ -52,19 +52,30 @@ class CellView extends Displayable{
   displayMap(){
     noStroke(); //turns off outlines (borders can interfere with detection)
     fill(this.mapColor);
+    push();
+    rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
+    pop();
   }
 
   //draw user viewable layer
   display(){
     stroke('GRAY'); //turn outlines back on for hex display
     fill(this.displayColor);
+    
+    push()
+    rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
+    
     fill(0); //text fill color
     textFont('Verdana');
     textSize(this.r / 2.5); //text size is relative to the radius
     textAlign(CENTER);
-    text(this.cellText,this.x,this.y + (this.r / 7));
+    
+    translate(this.x, this.y);
+    rotate(PI/6); //get the text rotated correctly
+    text(this.cellText, 0, 0 + (this.r / 7));
+    pop();
   }
 }
 
