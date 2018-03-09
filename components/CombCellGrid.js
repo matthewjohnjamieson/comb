@@ -29,7 +29,7 @@ class CellGrid extends Displayable{
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
     let keyIndex = keys.findIndex(x => x == this.key);//search keys array for index of grid key
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order (so that pop() can be used)
-    let quals   = ['m','m','','m','m','','m','']; //empties used to represent major chords 
+    let quals   = ['dim','m','','m','m','','dim','']; //empties used to represent major chords 
                                                   //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
     
     //nested function to generate a Cell object, complete with a chord from the grid's key.

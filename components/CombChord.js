@@ -17,7 +17,7 @@ class Chord{
     this.rootMidiNote = octave[root];
     this.qual = (qual == null ? '' : qual);
     this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.rootMidiNote + 4);
-    this.fifth = this.rootMidiNote + 7;
+    this.fifth = (this.qual === "dim" ? this.rootMidiNote + 6 : this.rootMidiNote + 7);
     this.synth = synth;     
   }
   
