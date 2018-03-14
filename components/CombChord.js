@@ -32,7 +32,6 @@ class Chord{
   }
   
   play(){
-    console.log(this.rootMidiNote, this.third, this.fifth);
     this.synth.play(this.rootMidiNote,this.third,this.fifth);
   }
 
