@@ -91,6 +91,8 @@ class CellController{
     this.cellView.cellText = this.cellModel.chord.root + this.cellModel.chord.qual;//text to display in a cell
     this.cellNumber = id;//cellNumber is a global variable to keep # of cells
     this.isClicked = false;
+	//need a temp variable to store the previous displayColor of the cell to go back to when click event occurs
+	this.tempDisplayColor = this.cellView.displayColor; 
     // numberOfCells++; 
   }
 
@@ -107,7 +109,7 @@ class CellController{
               (!mouseIsPressed &&  /* mouse released */
                 (this.isClicked === true))){ 
       
-      this.cellView.displayColor = 'WHITE';
+      this.cellView.displayColor = this.tempDisplayColor; //change to stored color
       this.cellModel.chord.stop();
       this.isClicked = false;
     }

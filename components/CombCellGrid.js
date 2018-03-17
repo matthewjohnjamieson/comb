@@ -43,7 +43,7 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  'WHITE',
+                  color(0,0,255), //change display color here? probably need array or class to have different colors
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
