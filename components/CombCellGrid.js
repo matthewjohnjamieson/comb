@@ -11,13 +11,14 @@ DEPENDS ON: CombCell.js
 */
 
 class CellGrid extends Displayable{
-  constructor(x,y,cellSize,key){
+  constructor(x,y,cellSize,key,keyDisplayColor){
     super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
     this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
+	this.keyDisplayColor = keyDisplayColor; // plug in hue value?
     this.cells = this.makeCells();
   }
   
@@ -43,7 +44,7 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  color(0,0,255), //change display color here? probably need array or class to have different colors
+                  thisObject.keyDisplayColor, //change display color here? probably need array or class to have different colors
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),

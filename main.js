@@ -16,16 +16,10 @@ function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30);
   createCanvas(1440,900);
-  function buildMainGrid(){
-    var tempArray = [(new CellGrid(width/2,height/2,30,'C'))];
-    circleOfFifthsKeys = ['F#','B','E','A','D','G'];
-    for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(width/2 + (36*3*i),height/2,30,circleOfFifthsKeys.pop()));
-    }
-    return tempArray;
-  }
-  var mainGrid = buildMainGrid();
-  screens[0] = new Screen(128, mainGrid); //main grid
+//  colorMode(HSB, 255);
+  var mainGrid = new MainGrid();
+  var isThisVarNeeded = mainGrid.buildMainGrid();
+  screens[0] = new Screen(128, isThisVarNeeded); //main grid
   //screens[1] = new Screen(128, [(new Cell(width/2,height/2,100,255,255,(new Chord("D", "min", "7"))))]); //playin' around screen
   screens[(screens[1] ? 1 : 0)].displayMap();
   
