@@ -16,7 +16,11 @@ function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30);
   createCanvas(1440,900);
-  screens[0] = new Screen(128, [(new CellGrid(width/2,height/2,30,'C')), (new CellGrid( (width/2) + (36 * 3),height/2,30,'D')) ]); //main grid
+  screens[0] = new Screen(128,[
+                                (new CellGrid(width/2,height/2,30,'C')),
+                                (new CellGrid( (width/2) + (36 * 3),height/2,30,'D'))
+                              ]); //main grid
+  
   //screens[1] = new Screen(128, [(new Cell(width/2,height/2,100,255,255,(new Chord("D", "min", "7"))))]); //playin' around screen
   screens[(screens[1] ? 1 : 0)].displayMap();
   
