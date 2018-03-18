@@ -1,3 +1,4 @@
+
 thisSentenceIsFalse = false;
 
 
@@ -5,9 +6,24 @@ if(pullRequest.isAccepted()){
   thisSentenceIsFalse = true;
 }
 
-<<<<<<< HEAD
+1
+2
+3
+
+AHA A CHANGE! WITH ANOTHER LOCAL CHANGE!!!!
+ now a local change...
+
+testing
+
+thisSentenceIsFalse = false;
+
+
+if(pullRequest.isAccepted()){
+  thisSentenceIsFalse = true;
+}
+
+
 i want to push from local master to remote victorsBranch
-=======
 1
 2
 3
