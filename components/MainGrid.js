@@ -12,9 +12,9 @@ VF
 //try to separate out my logic VF
 class MainGrid{
   constructor(){
-	this.circleOfFifthsKeys = ['F#','C#','G#','D#','A#','F','F#','B','E','A','D','G']; //first half is for the 'flat' keys and second half is for the others
-	this.colorWheel = ['RED','GREEN','BLUE'];
-	this.reverseColorWheel = ['RED','BLUE','GREEN'];
+    this.circleOfFifthsKeys = ['F#','C#','G#','D#','A#','F','F#','B','E','A','D','G']; //first half is for the 'flat' keys and second half is for the others
+    this.colorWheel = ['RED','GREEN','BLUE'];
+    this.reverseColorWheel = ['RED','BLUE','GREEN'];
   }
   
   buildMainGrid(){
@@ -22,7 +22,7 @@ class MainGrid{
     for(var i = 1; i <= 6; i++){
       tempArray.push(new CellGrid(width/2 + (36*3*i),height/2,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%3]));
     }
- 	for(var i = 1; i <= 6; i++){
+    for(var i = 1; i <= 6; i++){
       tempArray.push(new CellGrid(width/2 - (36*3*i),height/2,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%3]));
     }
     return tempArray;
