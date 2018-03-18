@@ -16,7 +16,7 @@ function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30);
   createCanvas(1440,900);
-//  colorMode(HSB, 255);
+  //colorMode(HSB, 255);
   var mainGrid = new MainGrid();
   var isThisVarNeeded = mainGrid.buildMainGrid();
   screens[0] = new Screen(128, isThisVarNeeded); //main grid

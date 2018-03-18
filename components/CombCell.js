@@ -59,6 +59,7 @@ class CellView extends Displayable{
   }
 
   //draw user viewable layer
+  //going to have to edit this function if we want gradient colors VF
   display(){
     stroke('GRAY'); //turn outlines back on for hex display
     fill(this.displayColor);
@@ -68,6 +69,7 @@ class CellView extends Displayable{
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
     fill(255); //text fill color
+	//stroke(defaulted to grey); //text outline color optional VF
     textFont('Verdana');
     textSize(this.r / 2.5); //text size is relative to the radius
     textAlign(CENTER);
