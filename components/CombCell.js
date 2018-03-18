@@ -52,19 +52,30 @@ class CellView extends Displayable{
   displayMap(){
     noStroke(); //turns off outlines (borders can interfere with detection)
     fill(this.mapColor);
+    push();
+    rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
+    pop();
   }
 
   //draw user viewable layer
   display(){
     stroke('GRAY'); //turn outlines back on for hex display
     fill(this.displayColor);
+    
+    push()
+    rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
+    
     fill(0); //text fill color
     textFont('Verdana');
     textSize(this.r / 2.5); //text size is relative to the radius
     textAlign(CENTER);
-    text(this.cellText,this.x,this.y + (this.r / 7));
+    
+    translate(this.x, this.y);
+    rotate(PI/6); //get the text rotated correctly
+    text(this.cellText, 0, 0 + (this.r / 7));
+    pop();
   }
 }
 
@@ -80,16 +91,17 @@ class CellController{
     this.cellView.cellText = this.cellModel.chord.root + this.cellModel.chord.qual;//text to display in a cell
     this.cellNumber = id;//cellNumber is a global variable to keep # of cells
     this.isClicked = false;
+	//need a temp variable to store the previous displayColor of the cell to go back to when click event occurs
+	this.tempDisplayColor = this.cellView.displayColor; 
     // numberOfCells++; 
   }
 
   eventClickedMouseOver(){
-    if((mouseIsPressed &&
-          red(colorUnderMouse()) == red(this.cellView.mapColor)) && /* mouse press over cell */
-            (this.isClicked === false)){
+    if((mouseIsPressed /* mouse press over cell */
+      && red(colorUnderMouse()) == red(this.cellView.mapColor))
+      && (this.isClicked === false)){
       
       this.cellView.displayColor = 'BLACK';
-      console.log(this.cellNumber);//print the current cell number
       this.cellModel.chord.play();
       this.isClicked = true;
     }
@@ -97,7 +109,7 @@ class CellController{
               (!mouseIsPressed &&  /* mouse released */
                 (this.isClicked === true))){ 
       
-      this.cellView.displayColor = 'WHITE';
+      this.cellView.displayColor = this.tempDisplayColor; //change to stored color
       this.cellModel.chord.stop();
       this.isClicked = false;
     }

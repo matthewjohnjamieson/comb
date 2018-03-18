@@ -15,14 +15,23 @@ class Chord{
   constructor(root,qual,synth){
     this.root = root;
     this.rootMidiNote = octave[root];
-    this.qual = (qual == null ? '' : qual);
-    this.third = (this.qual == "m" ? this.rootMidiNote + 3 : this.rootMidiNote + 4);
-    this.fifth = this.rootMidiNote + 7;
+    this.qual = (qual === null ? '' : qual);
+    
+    //this is the old way before dim was implimented. depreciated. will go away soon...
+    //this.third = (this.qual === "m" ? this.rootMidiNote + 3 : this.rootMidiNote + 4);
+
+    if(this.qual === "m" || this.qual === "dim"){
+      this.third = this.rootMidiNote + 3;
+    }
+    else{
+      this.third = this.rootMidiNote + 4;
+    }
+
+    this.fifth = (this.qual === "dim" ? this.rootMidiNote + 6 : this.rootMidiNote + 7);
     this.synth = synth;     
   }
   
   play(){
-    console.log(this.root, this.third, this.fifth);
     this.synth.play(this.rootMidiNote,this.third,this.fifth);
   }
 
