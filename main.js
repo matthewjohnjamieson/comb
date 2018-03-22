@@ -10,7 +10,7 @@ let map;
 
 function setup() {
   pixelDensity(1); // set pix density for high dens displays
-  frameRate(60); //changed from 30
+  frameRate(30); //changed from 30
   createCanvas(windowWidth, windowHeight); //changed added windowWidth, windowHeight insted of 
   //colorMode(HSB, 255);
   var mainGrid = new MainGrid();
