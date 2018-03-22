@@ -100,7 +100,7 @@ class CellController{
   }
 
   eventClickedMouseOver(){
-    if( mouseIsPressed   && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) && (this.isClicked === false)){
+    if( mouseIsPressed && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) && (this.isClicked === false)){
     
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
