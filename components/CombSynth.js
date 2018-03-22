@@ -5,9 +5,9 @@ Synth object will play the notes. global and persistant so that all chords can s
 class Synth{
   constructor(){
     this.voices = [
-      (new p5.SawOsc()),
-      (new p5.SawOsc()),
-      (new p5.SawOsc())
+      (new p5.SinOsc()),
+      (new p5.SinOsc()),
+      (new p5.SinOsc())
     ]; 
 
     this.unisonvoices = [
@@ -34,7 +34,7 @@ class Synth{
 
   play(root,third,fifth){ 
     this.voices.map(v => v.start());//start the oscilators
-    this.unisonvoices.map(v => v.start());//start the oscilators
+    //this.unisonvoices.map(v => v.start());//start the oscilators
 
 
     this.envelope.map(e => e.setADSR(0.2, 0.4, 0.5, 0.5));
@@ -62,8 +62,8 @@ class Synth{
   stop(){
     this.voices.map(v => v.amp(0));
     this.voices.map(v => v.stop());
-    //this.unisonvoices.map(v => v.amp(0));
-    //this.unisonvoices.map(v => v.stop());
+    this.unisonvoices.map(v => v.amp(0));
+    this.unisonvoices.map(v => v.stop());
 
   }
 }
