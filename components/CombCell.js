@@ -100,7 +100,9 @@ class CellController{
   }
 
   eventClickedMouseOver(){
-    if( mouseIsPressed && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) && (this.isClicked === false)){
+    if(mouseIsPressed
+        && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) 
+        && (this.isClicked === false)){
     
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
@@ -111,9 +113,8 @@ class CellController{
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
     }
-    else if((red(colorUnderMouse()) != red(this.cellView.mapColor)) || /* mouse dragged off cell */
-              (!mouseIsPressed &&  /* mouse released */
-                (this.isClicked === true))){ 
+    else if((colortonumber(colorUnderMouse()) != colortonumber(this.cellView.mapColor))
+            ||(!mouseIsPressed && (this.isClicked === true))){ 
       
       this.cellView.displayColor = this.tempDisplayColor; //change to stored color
       this.cellModel.chord.stop();
