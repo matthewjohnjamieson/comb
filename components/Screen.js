@@ -23,7 +23,7 @@ class Screen{
   }
 
   display(){
-    background(this.BACKGROUND);
+    //background(this.BACKGROUND);
     this.displayableObjects.map(o => o.display());
   }
 }

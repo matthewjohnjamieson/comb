@@ -23,8 +23,10 @@ class Displayable{
 class Clickable extends Displayable{
   constructor(){
     super();
-    clickableCount+=1;
+    clickableCount+=0x00003000;
     this.clickID = clickableCount;
-    this.clickMapColor = this.clickID;  
+    print( hex(this.clickID) );
+    this.clickMapColor = numbertocolor(this.clickID); 
+    //print(numbertocolor(this.clickID)); 
   }
 }

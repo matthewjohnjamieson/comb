@@ -1,3 +1,4 @@
+
 /*
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
@@ -11,13 +12,14 @@ DEPENDS ON: CombCell.js
 */
 
 class CellGrid extends Displayable{
-  constructor(x,y,cellSize,key){
+  constructor(x,y,cellSize,key,keyDisplayColor){
     super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
     this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
+	  this.keyDisplayColor = keyDisplayColor; // plug in hue value?
     this.cells = this.makeCells();
   }
   
@@ -43,7 +45,7 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  'WHITE',
+                  thisObject.keyDisplayColor, //change display color here? probably need array or class to have different colors
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
