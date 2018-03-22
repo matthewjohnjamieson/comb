@@ -4,10 +4,6 @@
 main for Comb project.
 */
 
-
-/***  processing functions ***/
-
-let mouseWasClicked = false; //event switch
 let currentScreen = 0;
 let screens = [];
 let map;
@@ -41,22 +37,3 @@ function mouseClicked(){
   mouseWasClicked = true;
 }
 
-/*** ^ processing functions ^ ***/
-
-//https://p5js.org/reference/#/p5.Image/pixels
-function colorUnderMouse(){
-  let x,y,d;
-  let off, components;
-  x = mouseX;
-  y = mouseY;
-  d = 1; //depreciated: pixelDensity(); should now always be 1
-  off = (y * width + x) * d * 4;
-  components = [
-    pixels[off],
-    pixels[off + 1],
-    pixels[off + 2],
-    pixels[off + 3]
-  ];
-
-  return components;
-}
