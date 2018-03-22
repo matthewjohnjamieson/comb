@@ -54,16 +54,16 @@ class Synth{
     this.envelope[0].play(this.voices[0]);
     this.envelope[1].play(this.voices[1]);
     this.envelope[2].play(this.voices[2]);
-    this.envelope[0].play(this.unisonvoices[0]);
-    this.envelope[1].play(this.unisonvoices[1]);
-    this.envelope[2].play(this.unisonvoices[2]);
+    // this.envelope[0].play(this.unisonvoices[0]);
+    // this.envelope[1].play(this.unisonvoices[1]);
+    // this.envelope[2].play(this.unisonvoices[2]);
     }
   
   stop(){
     this.voices.map(v => v.amp(0));
     this.voices.map(v => v.stop());
-    this.unisonvoices.map(v => v.amp(0));
-    this.unisonvoices.map(v => v.stop());
+    //this.unisonvoices.map(v => v.amp(0));
+    //this.unisonvoices.map(v => v.stop());
 
   }
 }
