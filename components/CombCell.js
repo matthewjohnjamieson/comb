@@ -62,7 +62,7 @@ class CellView extends Displayable{
   //draw user viewable layer
   //going to have to edit this function if we want gradient colors VF
   display(){
-    //stroke('GRAY'); //turn outlines back on for hex display
+    stroke('GRAY'); //turn outlines back on for hex display
     fill(this.displayColor);
     
     push()
@@ -105,7 +105,7 @@ class CellController{
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
       let bin = 0; 
-      console.log( color(this.cellView.mapColor) );
+      //console.log( color(this.cellView.mapColor) );
       // console.log( (red(this.cellView.mapColor)
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
