@@ -1,3 +1,4 @@
+
 /*
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
@@ -11,13 +12,14 @@ DEPENDS ON: CombCell.js
 */
 
 class CellGrid extends Displayable{
-  constructor(x,y,cellSize,key){
+  constructor(x,y,cellSize,key,keyDisplayColor){
     super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
     this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
+	  this.keyDisplayColor = keyDisplayColor; // plug in hue value?
     this.cells = this.makeCells();
   }
   
@@ -29,7 +31,7 @@ class CellGrid extends Displayable{
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
     let keyIndex = keys.findIndex(x => x == this.key);//search keys array for index of grid key
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order (so that pop() can be used)
-    let quals   = ['m','m','','m','m','','m','']; //empties used to represent major chords 
+    let quals   = ['dim','m','','m','m','','dim','']; //empties used to represent major chords 
                                                   //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
     
     //nested function to generate a Cell object, complete with a chord from the grid's key.
@@ -43,7 +45,7 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  'WHITE',
+                  thisObject.keyDisplayColor, //change display color here? probably need array or class to have different colors
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
@@ -66,6 +68,7 @@ class CellGrid extends Displayable{
     //"translate" variables for upper cluster by adding these variables to the coords
     let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
     let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
+    
     //upper cluster. fancy fractions are for the internal trig junk    
     for(var i = 5/6; i > 1/6; i -= 1/3){ 
       tempArray.push(buildCell(
@@ -88,8 +91,11 @@ class CellGrid extends Displayable{
   //push() and pop() are needed here to return the draw point to default (or whatever it was before) 
   display(){
     push(); // saves the current draw point
+    
     translate(this.x,this.y);//put the grid where it's at
+    //rotate(-PI/6);
     this.cells.map(cell => cell.display());
+
     pop(); // returns the draw point to when it was saved.
   }
 }
