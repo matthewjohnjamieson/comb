@@ -25,7 +25,6 @@ class Clickable extends Displayable{
     super();
     clickableCount+=0x00003000;
     this.clickID = clickableCount;
-    print( hex(this.clickID) );
     this.clickMapColor = numbertocolor(this.clickID); 
     //print(numbertocolor(this.clickID)); 
   }
