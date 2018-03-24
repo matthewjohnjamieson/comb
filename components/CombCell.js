@@ -149,7 +149,6 @@ class Cell extends Clickable{
   }
 
   display(){
-    this.cellView.displayMap();//non-user-viewable mouseover detection layer
     this.cellController.eventClickedMouseOver();//controller event check
     this.cellView.display();//user-viewable
   }
