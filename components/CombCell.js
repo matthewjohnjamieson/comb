@@ -41,7 +41,7 @@ class CellView extends Displayable{
   polygon(x, y, radius, npoints){
     var angle = TWO_PI / npoints;
     beginShape();
-    for(var a = 0; a < TWO_PI; a += angle){
+    for(var a = PI/6; a < TWO_PI; a += angle){
       var sx = x + Math.cos(a) * radius;
       var sy = y + Math.sin(a) * radius;
       vertex(sx, sy);
@@ -54,7 +54,7 @@ class CellView extends Displayable{
     noStroke(); //turns off outlines (borders can interfere with detection)
     fill( color(this.mapColor ));
     push();
-    rotate(-PI/6); //match rotation with user viewable layer
+    // rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
     pop();
   }
@@ -66,7 +66,7 @@ class CellView extends Displayable{
     fill(this.displayColor);
     
     push()
-    rotate(-PI/6); //hacky rotation stuff 
+    // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
     fill(200); //text fill color
@@ -76,7 +76,7 @@ class CellView extends Displayable{
     textAlign(CENTER);
     
     translate(this.x, this.y);
-    rotate(PI/6); //get the text rotated correctly
+    // rotate(PI/6); //get the text rotated correctly
     text(this.cellText, 0, 0 + (this.r / 7));
     pop();
   }
