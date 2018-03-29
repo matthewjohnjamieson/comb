@@ -19,10 +19,14 @@ function setup() {
   
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
+  screens[0].display();
+
 }
 
 function draw() {
-  screens[0].display();
+  if(mouseIsPressed){
+    screens[0].display();
+  }
 }
 
 function windowResized() { // added new just for resize
