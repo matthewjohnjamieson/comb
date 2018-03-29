@@ -52,10 +52,10 @@ class CellView extends Displayable{
   //draw mouseover detection map layer
   displayMap(){
     noStroke(); //turns off outlines (borders can interfere with detection)
-    fill( color(this.mapColor ));
+    fill( color(this.mapColor));
     push();
     rotate(-PI/6); //match rotation with user viewable layer
-    this.polygon(this.x,this.y,this.r,this.SIDES); 
+    this.polygon(this.x,this.y,this.r,this.SIDES);
     pop();
   }
 
