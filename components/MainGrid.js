@@ -20,10 +20,10 @@ class MainGrid{
   buildMainGrid(){
     var tempArray = [(new CellGrid(width/2,height/2,30,'C','RED'))];
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(width/2 + (36*3*i),height/2,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%3]));
+      tempArray.push(new CellGrid(width/2 + (106*i),height/2,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%3]));
     }
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(width/2 - (36*3*i),height/2,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%3]));
+      tempArray.push(new CellGrid(width/2 - (106*i),height/2,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%3]));
     }
     return tempArray;
   }
