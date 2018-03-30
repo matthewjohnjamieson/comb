@@ -13,8 +13,9 @@ VF
 class MainGrid{
   constructor(){
     this.circleOfFifthsKeys = ['F#','C#','G#','D#','A#','F','F#','B','E','A','D','G']; //first half is for the 'flat' keys and second half is for the others
-    this.colorWheel = ['RED','GREEN','BLUE'];
-    this.reverseColorWheel = ['RED','BLUE','GREEN'];
+    this.colorWheel = ['rgb(250,255,65)','rgb(120,220,82)','rgb(144,230,192)']; //ygb
+	// this.colorWheel = ['RED','GREEN','BLUE'];
+    this.reverseColorWheel = ['RED','BLUE','GREEN']; //rbg
   }
   
   buildMainGrid(){

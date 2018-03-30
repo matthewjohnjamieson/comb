@@ -35,6 +35,7 @@ class CellView extends Displayable{
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
+	this.isHighlighted = false;
   }
   
   //https://p5js.org/examples/form-regular-polygon.html
@@ -62,7 +63,12 @@ class CellView extends Displayable{
   //draw user viewable layer
   //going to have to edit this function if we want gradient colors VF
   display(){
-    stroke('GRAY'); //turn outlines back on for hex display
+    if(this.isHighlighted){
+      stroke('YELLOW'); //turn outlines back on for hex display
+    }
+    else{
+      stroke('GREY');
+    }
     fill(this.displayColor);
     
     push()
@@ -112,6 +118,12 @@ class CellController{
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
+      if(this.cellView.isHighlighted){
+        this.cellView.isHighlighted = false;
+      }
+      else{
+        this.cellView.isHighlighted = true;
+      }
     }
     else if((colortonumber(colorUnderMouse()) != colortonumber(this.cellView.mapColor))
             ||(!mouseIsPressed && (this.isClicked === true))){ 
