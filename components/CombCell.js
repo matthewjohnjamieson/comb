@@ -1,7 +1,6 @@
 
 /*
 Class for Comb hex cells
-meant to function as the basic button class, particularly for the main chord grid.
 
 HOW MOUSEOVER DETECTION WORKS:
 this class detects mouseovers with a "map" color on each shape, which is displayed before the
@@ -9,17 +8,11 @@ user viewable display color. This color is checked against the color under the m
 mouse is pressed (mouseIsPressed boolean check). Each Clickable shape displays with a different map color
 that serves as an identifier.
 
-CAN:
--display basic shape with fill color
--detect mouseIsPressed over individual Cells, and respond accordingly. Changes color.
--keep track of how many cells there are, and each cell is numbered in draw order
+Each cell is structured as a model-view-controller set of classes, inside a wrapper class (found at the bottom of this file)
 
-CAN'T:
--model components are mostly unimplemented
--play chords yet
-
-DEPENDS ON:
-p5.js
+FUTURE PLAN: this class is way too big. Even though MVC classes divide up the labor effectivly, finding anything in this 
+file is a bit of a mess. I'm considering breaking this into 4 seperate files. I'm 50-50 on if that will make life
+easier or harder though -MJ
 */
 
 
