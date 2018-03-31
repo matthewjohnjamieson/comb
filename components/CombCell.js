@@ -120,6 +120,11 @@ class CellController{
       this.cellModel.chord.stop();
       this.isClicked = false;
     }
+    else if(mouseIsPressed
+            && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor))
+            && (this.isClicked === true)){
+      console.log("...");
+    }
   }
 }
 
