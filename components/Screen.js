@@ -15,6 +15,11 @@ class Screen{
     this.displayableObjects = displayableObjects;
   }
 
+  resetisclicked(){
+    this.displayableObjects.map(grid => grid.resetisclicked());
+  }
+
+
   displayMap(){
     background(this.BACKGROUND);
     this.displayableObjects.map(o => o.displayMap());

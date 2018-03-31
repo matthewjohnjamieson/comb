@@ -31,7 +31,7 @@ class Synth{
 
     this.voices.map(v => v.start());//start the oscilators
 
-    this.envelope.map(e => e.setADSR(0.05, 0.4, 0.5, 0.5));
+    this.envelope.map(e => e.setADSR(0.04, 0.2, 0.5, 1));
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
     
     this.voices[0].amp(this.envelope[0]);
