@@ -99,6 +99,7 @@ class CellController{
     // numberOfCells++; 
   }
 
+
   eventClickedMouseOver(){
     if(mouseIsPressed
         && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) 
@@ -123,11 +124,12 @@ class CellController{
     else if(mouseIsPressed
             && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor))
             && (this.isClicked === true)){
-      console.log("...");
+      //this.isClicked = false;
+      //this.eventClickedMouseOver();
+      
     }
   }
 }
-
 
 //model: currently responsible for holding a chord object to interface the cell
 //with the back end. Chords have letters, qualities, and currently hold synth objects.
@@ -147,6 +149,10 @@ class Cell extends Clickable{
     this.cellView = new CellView(x,y,r,displayColor,this.clickMapColor);
     this.cellModel = new CellModel(chord);
     this.cellController = new CellController(this.cellView,this.cellModel,this.clickID);
+  }
+
+  resetisclicked(){
+    this.cellController.isClicked = false;
   }
 
   displayMap(){
