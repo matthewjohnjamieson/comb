@@ -1,9 +1,7 @@
 /*
-Screen class fucntions as a container for displayable objects. 
+Screen class functions as a container for displayable objects. 
 Facilitates screen transitions. pass an array of objects to displayableObjects
-to use.
-
-it's required that all displayableObjects have to have a display() method
+to use. it's required that all displayableObjects have to have a display() method.
 
 example:
 
