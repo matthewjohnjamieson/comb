@@ -78,7 +78,10 @@ class CellView extends Displayable{
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
-    if(this.displayColor == '#E8B63A'){
+	if(this.isHighlighted){
+      fill('MAGENTA');
+	}
+    else if(this.displayColor == '#E8B63A'){
 	  fill('#7C3F03'); //text fill color
 	}
 	else{
