@@ -1,6 +1,7 @@
 /*
-Synth object will play the notes. global and persistant so that all chords can share the synth
-
+Synth object. Has a number of oscillators and envelopes etc.
+OCTSHFT constant sets oscillators to play +- a number of octaves. 
+example: set to -1 to play one octave lower 
 */
 class Synth{
   constructor(){
@@ -11,12 +12,6 @@ class Synth{
       (new p5.SinOsc()),
       (new p5.SinOsc())
     ]; 
-
-    // this.unisonvoices = [
-    //   (new p5.SawOsc()),
-    //   (new p5.SawOsc()),
-    //   (new p5.SawOsc())
-    // ];
 
     this.envelope = [
       (new p5.Env()),
@@ -30,15 +25,11 @@ class Synth{
 
     this.voices.map(v => v.amp(0)); //init amplitude
     //this.voices.map(v => v.start());//start the oscilators
-    //this.unisonvoices.map(v => v.amp(0)); //init amplitude
-    //this.unisonvoices.map(v => v.start());//start the oscilators
   }
 
   play(root,third,fifth){
 
     this.voices.map(v => v.start());//start the oscilators
-    //this.unisonvoices.map(v => v.start());//start the oscilators
-
 
     this.envelope.map(e => e.setADSR(0.05, 0.4, 0.5, 0.5));
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
@@ -50,23 +41,14 @@ class Synth{
     this.voices[0].freq(midiToFreq(root + this.OCTSHIFT*12) );
     this.voices[1].freq(midiToFreq(third + this.OCTSHIFT*12) );
     this.voices[2].freq(midiToFreq(fifth + this.OCTSHIFT*12) );
-    //this.unisonvoices[0].freq(midiToFreq(root) + 5);
-    //this.unisonvoices[1].freq(midiToFreq(third) + 5);
-    //this.unisonvoices[2].freq(midiToFreq(fifth) + 5);
         
     this.envelope[0].play(this.voices[0]);
     this.envelope[1].play(this.voices[1]);
     this.envelope[2].play(this.voices[2]);
-    // this.envelope[0].play(this.unisonvoices[0]);
-    // this.envelope[1].play(this.unisonvoices[1]);
-    // this.envelope[2].play(this.unisonvoices[2]);
     }
   
   stop(){
     this.voices.map(v => v.amp(0));
     this.voices.map(v => v.stop());
-    //this.unisonvoices.map(v => v.amp(0));
-    //this.unisonvoices.map(v => v.stop());
-
   }
 }
