@@ -20,7 +20,6 @@ function setup() {
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
   screens[0].display();
-
 }
 
 function draw() {

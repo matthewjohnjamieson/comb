@@ -15,10 +15,10 @@ class Screen{
     this.displayableObjects = displayableObjects;
   }
 
+  //reset clicked status for all cells in all grids. called on mouseRelease
   resetisclicked(){
     this.displayableObjects.map(grid => grid.resetisclicked());
   }
-
 
   displayMap(){
     background(this.BACKGROUND);
