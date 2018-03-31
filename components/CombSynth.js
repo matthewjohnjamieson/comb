@@ -5,6 +5,7 @@ Synth object will play the notes. global and persistant so that all chords can s
 class Synth{
   constructor(){
     console.log("a synth is being built...");
+    this.OCTSHIFT = -1; // use to change octave
     this.voices = [
       (new p5.SinOsc()),
       (new p5.SinOsc()),
@@ -46,9 +47,9 @@ class Synth{
     this.voices[1].amp(this.envelope[1]);
     this.voices[2].amp(this.envelope[2]);
 
-    this.voices[0].freq(midiToFreq(root) );
-    this.voices[1].freq(midiToFreq(third) );
-    this.voices[2].freq(midiToFreq(fifth) );
+    this.voices[0].freq(midiToFreq(root + this.OCTSHIFT*12) );
+    this.voices[1].freq(midiToFreq(third + this.OCTSHIFT*12) );
+    this.voices[2].freq(midiToFreq(fifth + this.OCTSHIFT*12) );
     //this.unisonvoices[0].freq(midiToFreq(root) + 5);
     //this.unisonvoices[1].freq(midiToFreq(third) + 5);
     //this.unisonvoices[2].freq(midiToFreq(fifth) + 5);
