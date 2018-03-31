@@ -39,16 +39,16 @@ class Synth{
     //this.unisonvoices.map(v => v.start());//start the oscilators
 
 
-    this.envelope.map(e => e.setADSR(0.05, 0.4, 0.5, 0.5));
+    this.envelope.map(e => e.setADSR(0.04, 0.2, 0.5, 1));
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
     
     this.voices[0].amp(this.envelope[0]);
     this.voices[1].amp(this.envelope[1]);
     this.voices[2].amp(this.envelope[2]);
 
-    this.voices[0].freq(midiToFreq(root) );
-    this.voices[1].freq(midiToFreq(third) );
-    this.voices[2].freq(midiToFreq(fifth) );
+    this.voices[0].freq(midiToFreq(root ) );
+    this.voices[1].freq(midiToFreq(third ) );
+    this.voices[2].freq(midiToFreq(fifth ) ) ;
     //this.unisonvoices[0].freq(midiToFreq(root) + 5);
     //this.unisonvoices[1].freq(midiToFreq(third) + 5);
     //this.unisonvoices[2].freq(midiToFreq(fifth) + 5);
