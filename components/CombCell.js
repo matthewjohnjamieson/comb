@@ -64,18 +64,26 @@ class CellView extends Displayable{
   //going to have to edit this function if we want gradient colors VF
   display(){
     if(this.isHighlighted){
-      stroke('YELLOW'); //turn outlines back on for hex display
+      stroke('MAGENTA'); //turn outlines back on for hex display
     }
-    else{
-      stroke('GREY');
+    else if(this.displayColor == '#7C3F03'){
+      stroke('#E8B63A');
     }
+	else{
+	  stroke('#7C3F03');
+	}
     fill(this.displayColor);
     
     push()
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
-    fill(200); //text fill color
+    if(this.displayColor == '#E8B63A'){
+	  fill('#7C3F03'); //text fill color
+	}
+	else{
+	  fill('#E8B63A'); //text fill color
+	}
     //stroke(defaulted to grey); //text outline color optional VF
     textFont('Verdana');
     textSize(this.r / 2.3); //text size is relative to the radius
