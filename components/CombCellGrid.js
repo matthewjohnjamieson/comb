@@ -50,22 +50,20 @@ class CellGrid extends Displayable{
     
     /* below is the code to generate the grid from cells... */
     /* INVOLVES TRIG, so edit at your own risk. */
-   
     
     tempArray.push(buildCell(this,0,0)); //center cell
     //lower cluster. fancy fractions are for the internal trig junk
-    for(var i = 7/6; i <= 13/6; i += 1/3){
+    for(var i = 4/3; i <= 7/3; i += 1/3){
       tempArray.push(buildCell(
         this,
         (this.SPACING*this.cellSize)*Math.cos( -(i) * PI),
         (this.SPACING*this.cellSize)*Math.sin( -(i) * PI)));
     } 
     //"translate" variables for upper cluster by adding these variables to the coords
-    let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
-    let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
-    
+    let transX = (this.SPACING*this.cellSize)*Math.cos(5/3 * PI);
+    let transY = (this.SPACING*this.cellSize)*Math.sin(5/3 * PI);  
     //upper cluster. fancy fractions are for the internal trig junk    
-    for(var i = 5/6; i > 1/6; i -= 1/3){ 
+    for(var i = 1; i > 1/3; i -= 1/3){ 
       tempArray.push(buildCell(
         this,
         (this.SPACING*this.cellSize)*Math.cos( -(i) * PI)+transX,

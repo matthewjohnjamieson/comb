@@ -28,13 +28,14 @@ class CellView extends Displayable{
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
+	this.isHighlighted = false;
   }
   
   //https://p5js.org/examples/form-regular-polygon.html
   polygon(x, y, radius, npoints){
     var angle = TWO_PI / npoints;
     beginShape();
-    for(var a = 0; a < TWO_PI; a += angle){
+    for(var a = PI/6; a < TWO_PI; a += angle){
       var sx = x + Math.cos(a) * radius;
       var sy = y + Math.sin(a) * radius;
       vertex(sx, sy);
@@ -47,29 +48,47 @@ class CellView extends Displayable{
     noStroke(); //turns off outlines (borders can interfere with detection)
     fill( color(this.mapColor));
     push();
-    rotate(-PI/6); //match rotation with user viewable layer
-    this.polygon(this.x,this.y,this.r,this.SIDES);
+// <<<<<<< HEAD
+//     rotate(-PI/6); //match rotation with user viewable layer
+//     this.polygon(this.x,this.y,this.r,this.SIDES);
+// =======
+    // rotate(-PI/6); //match rotation with user viewable layer
+    this.polygon(this.x,this.y,this.r,this.SIDES); 
+>>>>>>> vic/honeycombcolor
     pop();
   }
 
   //draw user viewable layer
   //going to have to edit this function if we want gradient colors VF
   display(){
-    stroke('GRAY'); //turn outlines back on for hex display
+    if(this.isHighlighted){
+      stroke('MAGENTA'); //turn outlines back on for hex display
+    }
+    else if(this.displayColor == '#7C3F03'){
+      stroke('#E8B63A');
+    }
+	else{
+	  stroke('#7C3F03');
+	}
     fill(this.displayColor);
     
     push()
-    rotate(-PI/6); //hacky rotation stuff 
+    // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
-    fill(200); //text fill color
+    if(this.displayColor == '#E8B63A'){
+	  fill('#7C3F03'); //text fill color
+	}
+	else{
+	  fill('#E8B63A'); //text fill color
+	}
     //stroke(defaulted to grey); //text outline color optional VF
     textFont('Verdana');
     textSize(this.r / 2.3); //text size is relative to the radius
     textAlign(CENTER);
     
     translate(this.x, this.y);
-    rotate(PI/6); //get the text rotated correctly
+    // rotate(PI/6); //get the text rotated correctly
     text(this.cellText, 0, 0 + (this.r / 7));
     pop();
   }
@@ -106,6 +125,12 @@ class CellController{
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
+      if(this.cellView.isHighlighted){
+        this.cellView.isHighlighted = false;
+      }
+      else{
+        this.cellView.isHighlighted = true;
+      }
     }
     else if((colortonumber(colorUnderMouse()) != colortonumber(this.cellView.mapColor))
             ||(!mouseIsPressed && (this.isClicked === true))){ 
