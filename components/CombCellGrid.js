@@ -57,8 +57,8 @@ class CellGrid extends Displayable{
     for(var i = 7/6; i <= 13/6; i += 1/3){
       tempArray.push(buildCell(
         this,
-        (this.SPACING*this.cellSize)*cos( -(i) * PI),
-        (this.SPACING*this.cellSize)*sin( -(i) * PI)));
+        (this.SPACING*this.cellSize)*Math.cos( -(i) * PI),
+        (this.SPACING*this.cellSize)*Math.sin( -(i) * PI)));
     } 
     //"translate" variables for upper cluster by adding these variables to the coords
     let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
