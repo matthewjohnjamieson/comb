@@ -54,7 +54,7 @@ class CellView extends Displayable{
 // =======
     // rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
->>>>>>> vic/honeycombcolor
+//>>>>>>> vic/honeycombcolor
     pop();
   }
 
