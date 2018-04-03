@@ -1,7 +1,6 @@
 
 /*
 Class for Comb hex cells
-meant to function as the basic button class, particularly for the main chord grid.
 
 HOW MOUSEOVER DETECTION WORKS:
 this class detects mouseovers with a "map" color on each shape, which is displayed before the
@@ -9,17 +8,11 @@ user viewable display color. This color is checked against the color under the m
 mouse is pressed (mouseIsPressed boolean check). Each Clickable shape displays with a different map color
 that serves as an identifier.
 
-CAN:
--display basic shape with fill color
--detect mouseIsPressed over individual Cells, and respond accordingly. Changes color.
--keep track of how many cells there are, and each cell is numbered in draw order
+Each cell is structured as a model-view-controller set of classes, inside a wrapper class (found at the bottom of this file)
 
-CAN'T:
--model components are mostly unimplemented
--play chords yet
-
-DEPENDS ON:
-p5.js
+FUTURE PLAN: this class is way too big. Even though MVC classes divide up the labor effectivly, finding anything in this 
+file is a bit of a mess. I'm considering breaking this into 4 seperate files. I'm 50-50 on if that will make life
+easier or harder though -MJ
 */
 
 
@@ -35,6 +28,7 @@ class CellView extends Displayable{
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
+
 	this.isHighlighted = false;
   }
   
@@ -53,7 +47,7 @@ class CellView extends Displayable{
   //draw mouseover detection map layer
   displayMap(){
     noStroke(); //turns off outlines (borders can interfere with detection)
-    fill( color(this.mapColor ));
+    fill( color(this.mapColor));
     push();
     // rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
@@ -73,7 +67,6 @@ class CellView extends Displayable{
 	  stroke('#7C3F03');
 	}
     fill(this.displayColor);
-    
     push()
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
@@ -113,6 +106,7 @@ class CellController{
     // numberOfCells++; 
   }
 
+
   eventClickedMouseOver(){
     if(mouseIsPressed
         && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) 
@@ -126,10 +120,7 @@ class CellController{
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
-      if(this.cellView.isHighlighted){
-        this.cellView.isHighlighted = false;
-      }
-      else{
+	  if(!this.cellView.isHighlighted){
         this.cellView.isHighlighted = true;
       }
     }
@@ -140,9 +131,15 @@ class CellController{
       this.cellModel.chord.stop();
       this.isClicked = false;
     }
+    else if(mouseIsPressed
+            && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor))
+            && (this.isClicked === true)){
+      //this.isClicked = false;
+      //this.eventClickedMouseOver();
+      
+    }
   }
 }
-
 
 //model: currently responsible for holding a chord object to interface the cell
 //with the back end. Chords have letters, qualities, and currently hold synth objects.
@@ -162,6 +159,14 @@ class Cell extends Clickable{
     this.cellView = new CellView(x,y,r,displayColor,this.clickMapColor);
     this.cellModel = new CellModel(chord);
     this.cellController = new CellController(this.cellView,this.cellModel,this.clickID);
+  }
+
+  resetisclicked(){
+    this.cellController.isClicked = false;
+  }
+  
+  resetIsHighlighted(){
+    this.cellView.isHighlighted = false;
   }
 
   displayMap(){
