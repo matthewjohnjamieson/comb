@@ -37,4 +37,8 @@ function windowResized() { // added new just for resize
 //this function is called every time the mouse is released
 function mouseReleased(){
   screens[0].resetisclicked();// reset the event triggers on all cells.
+  if(colortonumber(colorUnderMouse()) == colortonumber("GREY")){
+    screens[0].resetIsHighlighted();
+  }
+
 }

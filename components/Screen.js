@@ -19,6 +19,10 @@ class Screen{
   resetisclicked(){
     this.displayableObjects.map(grid => grid.resetisclicked());
   }
+  
+  resetIsHighlighted(){
+    this.displayableObjects.map(grid => grid.resetIsHighlighted());
+  }
 
   displayMap(){
     background(this.BACKGROUND);

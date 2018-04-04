@@ -77,6 +77,10 @@ class CellGrid extends Displayable{
   resetisclicked(){
     this.cells.map(cell => cell.resetisclicked());
   }
+  
+  resetIsHighlighted(){
+    this.cells.map(cell => cell.resetIsHighlighted());
+  }
 
   //push() and pop() are needed here to return the draw point to default (or whatever it was before)
   displayMap(){

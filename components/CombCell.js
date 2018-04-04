@@ -28,6 +28,7 @@ class CellView extends Displayable{
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
+
 	this.isHighlighted = false;
   }
   
@@ -48,13 +49,8 @@ class CellView extends Displayable{
     noStroke(); //turns off outlines (borders can interfere with detection)
     fill( color(this.mapColor));
     push();
-// <<<<<<< HEAD
-//     rotate(-PI/6); //match rotation with user viewable layer
-//     this.polygon(this.x,this.y,this.r,this.SIDES);
-// =======
     // rotate(-PI/6); //match rotation with user viewable layer
     this.polygon(this.x,this.y,this.r,this.SIDES); 
-//>>>>>>> vic/honeycombcolor
     pop();
   }
 
@@ -71,7 +67,6 @@ class CellView extends Displayable{
 	  stroke('#7C3F03');
 	}
     fill(this.displayColor);
-    
     push()
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
@@ -125,10 +120,7 @@ class CellController{
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
-      if(this.cellView.isHighlighted){
-        this.cellView.isHighlighted = false;
-      }
-      else{
+	  if(!this.cellView.isHighlighted){
         this.cellView.isHighlighted = true;
       }
     }
@@ -171,6 +163,10 @@ class Cell extends Clickable{
 
   resetisclicked(){
     this.cellController.isClicked = false;
+  }
+  
+  resetIsHighlighted(){
+    this.cellView.isHighlighted = false;
   }
 
   displayMap(){
