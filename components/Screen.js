@@ -1,9 +1,7 @@
 /*
-Screen class fucntions as a container for displayable objects. 
+Screen class functions as a container for displayable objects. 
 Facilitates screen transitions. pass an array of objects to displayableObjects
-to use.
-
-it's required that all displayableObjects have to have a display() method
+to use. it's required that all displayableObjects have to have a display() method.
 
 example:
 
@@ -15,6 +13,15 @@ class Screen{
   constructor(background, displayableObjects){
     this.BACKGROUND = background;
     this.displayableObjects = displayableObjects;
+  }
+
+  //reset clicked status for all cells in all grids. called on mouseRelease
+  resetisclicked(){
+    this.displayableObjects.map(grid => grid.resetisclicked());
+  }
+  
+  resetIsHighlighted(){
+    this.displayableObjects.map(grid => grid.resetIsHighlighted());
   }
 
   displayMap(){

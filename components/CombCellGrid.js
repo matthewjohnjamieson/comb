@@ -3,10 +3,6 @@
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
 
-CAN:
--display a grid of cells to represent a key
--assign chords to cells (currently just strings rather than actual chord objects)
--be a good citizen: returns the draw point to it's position before the grid is drawn 
 
 DEPENDS ON: CombCell.js
 */
@@ -31,8 +27,7 @@ class CellGrid extends Displayable{
     let keys = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
     let keyIndex = keys.findIndex(x => x == this.key);//search keys array for index of grid key
     let offsets = [11,2,5,4,9,0,11,7];//intervals in reverse order (so that pop() can be used)
-    let quals   = ['dim','m','','m','m','','dim','']; //empties used to represent major chords 
-                                                  //FIRST & 2ND TO LAST SHOULD BE DIM, but dim isn't implimented yet
+    let quals   = ['dim','m','','m','m','','dim','']; //empties represent major chords 
     
     //nested function to generate a Cell object, complete with a chord from the grid's key.
     //a nested function used in this way can't automatically access "this" for class elements.
@@ -55,22 +50,20 @@ class CellGrid extends Displayable{
     
     /* below is the code to generate the grid from cells... */
     /* INVOLVES TRIG, so edit at your own risk. */
-   
     
     tempArray.push(buildCell(this,0,0)); //center cell
     //lower cluster. fancy fractions are for the internal trig junk
-    for(var i = 7/6; i <= 13/6; i += 1/3){
+    for(var i = 4/3; i <= 7/3; i += 1/3){
       tempArray.push(buildCell(
         this,
-        (this.SPACING*this.cellSize)*cos( -(i) * PI),
-        (this.SPACING*this.cellSize)*sin( -(i) * PI)));
+        (this.SPACING*this.cellSize)*Math.cos( -(i) * PI),
+        (this.SPACING*this.cellSize)*Math.sin( -(i) * PI)));
     } 
     //"translate" variables for upper cluster by adding these variables to the coords
-    let transX = (this.SPACING*this.cellSize)*Math.cos(11/6 * PI);
-    let transY = (this.SPACING*this.cellSize)*Math.sin(11/6 * PI);  
-    
+    let transX = (this.SPACING*this.cellSize)*Math.cos(5/3 * PI);
+    let transY = (this.SPACING*this.cellSize)*Math.sin(5/3 * PI);  
     //upper cluster. fancy fractions are for the internal trig junk    
-    for(var i = 5/6; i > 1/6; i -= 1/3){ 
+    for(var i = 1; i > 1/3; i -= 1/3){ 
       tempArray.push(buildCell(
         this,
         (this.SPACING*this.cellSize)*Math.cos( -(i) * PI)+transX,
@@ -78,6 +71,15 @@ class CellGrid extends Displayable{
     }
 
     return tempArray;
+  }
+
+  //reset clicked status for all cells in a grid. called on mouseRelease
+  resetisclicked(){
+    this.cells.map(cell => cell.resetisclicked());
+  }
+  
+  resetIsHighlighted(){
+    this.cells.map(cell => cell.resetIsHighlighted());
   }
 
   //push() and pop() are needed here to return the draw point to default (or whatever it was before)
