@@ -20,7 +20,7 @@ class Synth{
 
     //total amplitude can't excede 1.0, this constant divides 1 by the num of 
     //voices in the synth, so that they don't add up > 1
-    this.MAXAMP = (1/this.voices.length) - 0.2;
+    this.MAXAMP = (1/this.voices.length) - 0.1;
 
     this.voices.map(v => v.amp(0)); //init amplitude
     //this.voices.map(v => v.start());//start the oscilators
@@ -31,9 +31,9 @@ class Synth{
     this.stop(); //in case this cell is already playing
     
     this.voices.map(v => v.start());//start the oscilators
-
-    this.envelope.map(e => e.setADSR(0.002, 0.2, 0.3, 1));
+    
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
+    this.envelope.map(e => e.setADSR(0.2, 0.2, 0.3, 1));
     
     this.voices[0].amp(this.envelope[0]);
     this.voices[1].amp(this.envelope[1]);
