@@ -5,11 +5,11 @@ example: set to -1 to play one octave lower
 */
 class Synth{
   constructor(){
-    this.OCTSHIFT = 0; // use to change octave
+    this.OCTSHIFT = -1; // use to change octave
     this.voices = [
-      (new p5.SinOsc()),
-      (new p5.SinOsc()),
-      (new p5.SinOsc())
+      (new p5.TriOsc()),
+      (new p5.TriOsc()),
+      (new p5.TriOsc())
     ]; 
 
     this.envelope = [
@@ -20,7 +20,7 @@ class Synth{
 
     //total amplitude can't excede 1.0, this constant divides 1 by the num of 
     //voices in the synth, so that they don't add up > 1
-    this.MAXAMP = 1/this.voices.length;
+    this.MAXAMP = (1/this.voices.length) - 0.2;
 
     this.voices.map(v => v.amp(0)); //init amplitude
     //this.voices.map(v => v.start());//start the oscilators
@@ -30,7 +30,7 @@ class Synth{
 
     this.voices.map(v => v.start());//start the oscilators
 
-    this.envelope.map(e => e.setADSR(0.04, 0.2, 0.5, 1));
+    this.envelope.map(e => e.setADSR(0.2, 0.2, 0.3, 1));
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
     
     this.voices[0].amp(this.envelope[0]);
@@ -44,6 +44,7 @@ class Synth{
     this.envelope[0].play(this.voices[0]);
     this.envelope[1].play(this.voices[1]);
     this.envelope[2].play(this.voices[2]);
+
     }
   
   stop(){
