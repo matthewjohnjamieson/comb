@@ -12,41 +12,34 @@ function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30); //changed from 30
   
-  //scale(0.75);
   createCanvas(windowWidth, windowHeight); //changed added windowWidth, windowHeight insted of 
   //colorMode(HSB, 255);
-  scale(0.90);
   translate((width/2), (height/2));
   
   let mainGrid = new MainGrid();
   let isThisVarNeeded = mainGrid.buildMainGrid();
   screens[0] = new Screen(128, isThisVarNeeded); //main grid
-  
+  scale(0.87);
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
   screens[0].display();
 }
 
 function draw() {
-  if(mouseIsPressed){
-    
-  scale(0.90);
+  if(mouseIsPressed){    
   translate((width/2), (height/2));
-    
-    screens[0].display();
+  scale(0.87);  
+  screens[0].display();
   }
 }
 
 function windowResized() { // added new just for resize
-   
-
-
   resizeCanvas(windowWidth, windowHeight);
-  scale(0.90);
+  //scale(0.90);
   translate((width/2), (height/2));
+  scale(0.87);
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
-  
   screens[0].display();
 
 }
