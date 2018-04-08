@@ -27,10 +27,12 @@ class Synth{
   }
 
   play(root,third,fifth){
-
+    
+    this.stop();
+    
     this.voices.map(v => v.start());//start the oscilators
 
-    this.envelope.map(e => e.setADSR(0.2, 0.2, 0.3, 1));
+    this.envelope.map(e => e.setADSR(0.002, 0.2, 0.3, 1));
     this.envelope.map(e => e.setRange( (this.MAXAMP) , 0)); //highest and lowest volumes
     
     this.voices[0].amp(this.envelope[0]);

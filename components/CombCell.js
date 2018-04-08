@@ -28,8 +28,7 @@ class CellView extends Displayable{
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
     this.SIDES = 6;
-
-	this.isHighlighted = false;
+	  this.isHighlighted = false;
   }
   
   //https://p5js.org/examples/form-regular-polygon.html
@@ -128,7 +127,7 @@ class CellController{
             ||(!mouseIsPressed && (this.isClicked === true))){ 
       
       this.cellView.displayColor = this.tempDisplayColor; //change to stored color
-      this.cellModel.chord.stop();
+      //this.cellModel.chord.stop();
       this.isClicked = false;
     }
     else if(mouseIsPressed
@@ -150,7 +149,6 @@ class CellModel{
   }
 }
 
-
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
 class Cell extends Clickable{
@@ -162,11 +160,12 @@ class Cell extends Clickable{
   }
 
   resetisclicked(){
-    this.cellController.isClicked = false;
+    this.cellController.isClicked = false;    
   }
   
   resetIsHighlighted(){
     this.cellView.isHighlighted = false;
+    this.cellModel.chord.stop();
   }
 
   displayMap(){
