@@ -28,7 +28,7 @@ class Synth{
 
   play(root,third,fifth){
     
-    this.stop();
+    this.stop(); //in case this cell is already playing
     
     this.voices.map(v => v.start());//start the oscilators
 
@@ -39,15 +39,15 @@ class Synth{
     this.voices[1].amp(this.envelope[1]);
     this.voices[2].amp(this.envelope[2]);
 
-    this.voices[0].freq(midiToFreq(root + this.OCTSHIFT*12) );
-    this.voices[1].freq(midiToFreq(third + this.OCTSHIFT*12) );
-    this.voices[2].freq(midiToFreq(fifth + this.OCTSHIFT*12) );
+    this.voices[0].freq(midiToFreq(root + this.OCTSHIFT*12));
+    this.voices[1].freq(midiToFreq(third + this.OCTSHIFT*12));
+    this.voices[2].freq(midiToFreq(fifth + this.OCTSHIFT*12));
         
     this.envelope[0].play(this.voices[0]);
     this.envelope[1].play(this.voices[1]);
     this.envelope[2].play(this.voices[2]);
 
-    }
+  }
   
   stop(){
     this.voices.map(v => v.amp(0));
