@@ -58,7 +58,7 @@ class CellView extends Displayable{
   //going to have to edit this function if we want gradient colors VF
   display(){
     if(this.isHighlighted){
-      stroke('MAGENTA'); //turn outlines back on for hex display
+      stroke('MAGENTA'); //turn outlines back on for hex display //whit with text not outlined, saturated mag or purp, 
     }
     else if(this.displayColor == '#7C3F03'){
       stroke('#E8B63A');
