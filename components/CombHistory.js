@@ -6,26 +6,53 @@ stores the array of chord progression in global array
 
 
 
-class ChordHistory{
-	constructor(){
+class ChordHistory {
+	constructor() {
 		this.chordArray = [];
 	}
 
-	addElement(root,qual,synth){
+	addElement(root,qual,synth) {
 		this.chordArray.push(new Chord(root,qual,synth));
 		console.log(this.chordArray);
+		console.log(this.chordArray.length);
 	}
 
-	search(chord){
+	search(chord) {
+		for(let i = 0; i < this.chordArray.length; i++) {
+			if (this.chordArray == chord) {
+				return true; //returns true if chord is found
+			}
+		}
+		return false; //returnd false if chord can not be found
+	}
+
+	remove(chord) {
+		for(let i = 0; i < this.chordArray.length; i++) {
+			if (this.chordArray == chord) {
+				let removed = this.chordArray.splice(i,1);
+				if(this.removed.length == 0) {
+					return false; //returns false if chord found but not removed
+				}
+				return true;  //returns true is chord removed
+			}
+		}
+		return false; //returns false if chord not found
+	}
+
+	save() {
 
 	}
 
-	remove(chord){
-		
+	load() {
+
 	}
 
-	clear(){
+	/*loadMidi() {
+	
+	}
+	*/
 
-
+	clear() {
+		this.chordArray =  [];
 	}
 }
