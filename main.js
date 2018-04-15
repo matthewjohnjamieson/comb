@@ -7,6 +7,8 @@ main for Comb project.
 let currentScreen = 0;
 let screens = [];
 let map;
+let history = new ChordHistory();
+
 
 function setup() {
   pixelDensity(1); // set pix density for high dens displays
