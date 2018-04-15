@@ -15,7 +15,7 @@ class CellGrid extends Displayable{
     this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
-	  this.keyDisplayColor = keyDisplayColor; // plug in hue value?
+    this.keyDisplayColor = keyDisplayColor; // plug in hue value?
     this.cells = this.makeCells();
   }
   

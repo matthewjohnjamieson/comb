@@ -12,22 +12,33 @@ VF
 //try to separate out my logic VF
 class MainGrid{
   constructor(){
-    this.circleOfFifthsKeys = ['F#','C#','G#','D#','A#','F','F#','B','E','A','D','G']; //first half is for the 'flat' keys and second half is for the others
+    this.circleOfFifthsKeys = ['F#','C#','G#','D#','A#','F','F#','B','E','A','D','G','F#','C#','G#','D#','A#','F','F#','B','E','A','D','G']; //first half is for the 'flat' keys and second half is for the others
     //this.colorWheel = ['rgb(250,255,65)','rgb(120,220,82)','rgb(144,230,192)']; //ygb
     this.colorWheel = ['#E8B63A','#7C3F03']; // change the % mod in buildMainGrid
 	//this.colorWheel = ['RED','GREEN','BLUE'];
     //this.reverseColorWheel = ['RED','BLUE','GREEN']; //rbg
 	this.reverseColorWheel = ['#E8B63A','#7C3F03']; // change the % mod in buildMainGrid
+	//yellow = '#E8B63A'
+	//brown = '#7C3F03'
+	this.grids = [];
   }
   
   buildMainGrid(){
-    var tempArray = [(new CellGrid(0,0,30,'C','#E8B63A'))];
+    this.grids.push((new CellGrid(0,0,30,'C','#E8B63A')));
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2]));
+      this.grids.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2]));
     }
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2]));
+      this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2]));
     }
-    return tempArray;
+	
+	this.grids.push((new CellGrid(0,200,30,'C','GREY')));
+    for(var i = 1; i <= 6; i++){
+      this.grids.push(new CellGrid(0 + (106*i),200,30,this.circleOfFifthsKeys.pop(),'GREY'));
+    }
+    for(var i = 1; i <= 6; i++){
+      this.grids.push(new CellGrid(0 - (106*i),200,30,this.circleOfFifthsKeys.pop(),'GREY'));
+    }
+    return this.grids;
   }
 }

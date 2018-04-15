@@ -30,6 +30,7 @@ class CellView extends Displayable{
     this.SIDES = 6;
 
 	this.isHighlighted = false;
+	//this.isSecondGrid = false;
   }
   
   //https://p5js.org/examples/form-regular-polygon.html
@@ -58,25 +59,31 @@ class CellView extends Displayable{
   //going to have to edit this function if we want gradient colors VF
   display(){
     if(this.isHighlighted){
-      stroke('MAGENTA'); //turn outlines back on for hex display //whit with text not outlined, saturated mag or purp, 
+      stroke('MAGENTA'); //turn outlines back on for hex display //white with text not outlined, saturated mag or purp, 
     }
-    else if(this.displayColor == '#7C3F03'){
-      stroke('#E8B63A');
+    else if(this.displayColor == '#7C3F03'){ //if color is brown
+      stroke('#E8B63A');//yellow border
     }
-	else{
-	  stroke('#7C3F03');
+	else if(this.displayColor == '#E8B63A'){ //if color is yellow
+      stroke('#7C3F03');//brown border
 	}
+	else{
+      stroke('RED');
+    }
     fill(this.displayColor);
     push()
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
-    if(this.displayColor == '#E8B63A'){
-	  fill('#7C3F03'); //text fill color
+    if(this.displayColor == '#E8B63A'){ //if color is yellow
+	  fill('#7C3F03'); //text fill color (brown)
+	}
+	else if(this.displayColor == '#7C3F03'){ //if color is brown
+	  fill('#E8B63A'); //text fill color (yellow)
 	}
 	else{
-	  fill('#E8B63A'); //text fill color
-	}
+      fill('BLACK');
+    }
     //stroke(defaulted to grey); //text outline color optional VF
     textFont('Verdana');
     textSize(this.r / 2.3); //text size is relative to the radius
@@ -114,7 +121,7 @@ class CellController{
     
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
-      history.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
+      historyy.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
                             this.cellModel.chord.synth);
       let bin = 0; 
       //console.log( color(this.cellView.mapColor) );

@@ -7,7 +7,8 @@ main for Comb project.
 let currentScreen = 0;
 let screens = [];
 let map;
-let history = new ChordHistory();
+let historyy = new ChordHistory(); 
+// history may possibly be a reserved key word https://www.w3schools.com/js/js_reserved.asp
 
 
 function setup() {
@@ -51,6 +52,7 @@ function mouseReleased(){
   screens[0].resetisclicked();// reset the event triggers on all cells.
   if(colortonumber(colorUnderMouse()) == colortonumber("GREY")){
     screens[0].resetIsHighlighted();
+	historyy.clear();
   }
 
 }
