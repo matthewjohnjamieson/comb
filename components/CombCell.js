@@ -19,7 +19,7 @@ easier or harder though -MJ
 //view: responsible for displayable tasks ie drawing to the canvas
 //displayable tasks include user-viewable and non-user-viewable (mouseover map display)
 class CellView extends Displayable{
-  constructor(x,y,r,displayColor,mapCol){
+  constructor(x,y,r,displayColor,mapCol,isInBottomGrid){
     super();
     this.x = x;//coords
     this.y = y;
@@ -27,9 +27,20 @@ class CellView extends Displayable{
     this.cellText = '';//text to display in a cell
     this.mapColor = mapCol;//this is the hit map color to detect mouseover events
     this.displayColor = displayColor;//this is the color that the user sees. 
+    this.tempDisplayColor = this.displayColor;
     this.SIDES = 6;
 
 	this.isHighlighted = false;
+	this.isInBottomGrid = isInBottomGrid;
+	this.isOn = false;
+	if(this.isInBottomGrid){
+	  this.isOn = false;
+	  console.log('button is not on');
+	}
+	else{
+	  this.isOn = true;
+	  console.log('button is on');
+	}
 	//this.isSecondGrid = false;
   }
   
@@ -58,32 +69,59 @@ class CellView extends Displayable{
   //draw user viewable layer
   //going to have to edit this function if we want gradient colors VF
   display(){
+    /* if(this.isInBottomGrid){
+      if(historyy.search())
+      this.isOn = false;
+      
+    } */
+    
+    //stroke color logic
     if(this.isHighlighted){
       stroke('MAGENTA'); //turn outlines back on for hex display //white with text not outlined, saturated mag or purp, 
     }
-    else if(this.displayColor == '#7C3F03'){ //if color is brown
+    else if(this.tempDisplayColor == '#7C3F03'){ //if color is brown
       stroke('#E8B63A');//yellow border
     }
-	else if(this.displayColor == '#E8B63A'){ //if color is yellow
+	else if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
       stroke('#7C3F03');//brown border
 	}
-	else{
-      stroke('RED');
+	else if(this.isInBottomGrid && this.isOn){
+      stroke('GREEN');
     }
-    fill(this.displayColor);
+	else{
+      stroke(125);//background color
+	}
+    //stroke color logic
+	
+    //fill color logic
+	if(this.isOn){
+      fill(this.displayColor);
+    }
+	else{
+      fill(125)//background color
+    }
+	//fill color logic
+	
     push()
     // rotate(-PI/6); //hacky rotation stuff 
     this.polygon(this.x,this.y,this.r,this.SIDES);
     
-    if(this.displayColor == '#E8B63A'){ //if color is yellow
+	//text fill color logic
+    if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
 	  fill('#7C3F03'); //text fill color (brown)
 	}
-	else if(this.displayColor == '#7C3F03'){ //if color is brown
+	else if(this.tempDisplayColor == '#7C3F03'){ //if color is brown
 	  fill('#E8B63A'); //text fill color (yellow)
 	}
-	else{
+    else if(this.isInBottomGrid && this.isOn){
       fill('BLACK');
     }
+	else{
+      fill(125);//background color
+	  stroke(125);
+    }
+	//text fill color logic
+	
     //stroke(defaulted to grey); //text outline color optional VF
     textFont('Verdana');
     textSize(this.r / 2.3); //text size is relative to the radius
@@ -110,27 +148,30 @@ class CellController{
     this.isClicked = false;
 	  //need a temp variable to store the previous displayColor of the cell to go back to when click event occurs
 	  this.tempDisplayColor = this.cellView.displayColor; 
-    // numberOfCells++; 
+    // numberOfCells++;
   }
-
 
   eventClickedMouseOver(){
     if(mouseIsPressed
         && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor)) 
-        && (this.isClicked === false)){
+        && (this.isClicked === false) && (this.cellView.isOn)){
     
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
-      historyy.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
-                            this.cellModel.chord.synth);
+	  if(!this.cellView.isInBottomGrid){
+        historyy.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
+                              this.cellModel.chord.synth);
+      }
       let bin = 0; 
       //console.log( color(this.cellView.mapColor) );
       // console.log( (red(this.cellView.mapColor)
       // + blue(this.cellView.mapColor)
       // + green(this.cellView.mapColor)));
       this.isClicked = true;
-	  if(!this.cellView.isHighlighted){
-        this.cellView.isHighlighted = true;
+	  if(!this.cellView.isInBottomGrid){
+        if(!this.cellView.isHighlighted){
+          this.cellView.isHighlighted = true;
+        }
       }
     }
     else if((colortonumber(colorUnderMouse()) != colortonumber(this.cellView.mapColor))
@@ -144,8 +185,16 @@ class CellController{
             && (colortonumber(colorUnderMouse()) == colortonumber(this.cellView.mapColor))
             && (this.isClicked === true)){
       //this.isClicked = false;
-      //this.eventClickedMouseOver();
-      
+      //this.eventClickedMouseOver();  
+    }
+	
+	if(this.cellView.isInBottomGrid){
+      if(historyy.search(this.cellModel.chord)){
+        this.isOn = true;
+	  }
+	  else{
+        this.isOn = false;
+	  }
     }
   }
 }
@@ -163,9 +212,9 @@ class CellModel{
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
 class Cell extends Clickable{
-  constructor(x,y,r,displayColor,mapCol,chord){
+  constructor(x,y,r,displayColor,mapCol,chord,isInBottomGrid){
     super();
-    this.cellView = new CellView(x,y,r,displayColor,this.clickMapColor);
+    this.cellView = new CellView(x,y,r,displayColor,this.clickMapColor,isInBottomGrid);
     this.cellModel = new CellModel(chord);
     this.cellController = new CellController(this.cellView,this.cellModel,this.clickID);
   }

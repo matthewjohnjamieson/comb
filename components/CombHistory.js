@@ -23,6 +23,7 @@ class ChordHistory {
 				return true; //returns true if chord is found
 			}
 		}
+		console.log('history.search() failed')
 		return false; //returnd false if chord can not be found
 	}
 

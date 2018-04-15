@@ -8,7 +8,7 @@ DEPENDS ON: CombCell.js
 */
 
 class CellGrid extends Displayable{
-  constructor(x,y,cellSize,key,keyDisplayColor){
+  constructor(x,y,cellSize,key,keyDisplayColor,isBottomGrid){
     super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
@@ -17,6 +17,7 @@ class CellGrid extends Displayable{
     this.cellSize = cellSize;
     this.keyDisplayColor = keyDisplayColor; // plug in hue value?
     this.cells = this.makeCells();
+	this.isBottomGrid = isBottomGrid;
   }
   
   //builds a grid of displayable cells starting from the middle of the grid
@@ -40,11 +41,12 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  thisObject.keyDisplayColor, //change display color here? probably need array or class to have different colors
+                  thisObject.keyDisplayColor, 
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
-                                       new Synth()));
+                                       new Synth()),
+				  thisObject.isBottomGrid);
     }
 
     

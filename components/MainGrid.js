@@ -24,20 +24,20 @@ class MainGrid{
   }
   
   buildMainGrid(){
-    this.grids.push((new CellGrid(0,0,30,'C','#E8B63A')));
+    this.grids.push((new CellGrid(0,0,30,'C','#E8B63A',false)));
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2]));
+      this.grids.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2],false));
     }
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2]));
+      this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2],false));
     }
 	
-	this.grids.push((new CellGrid(0,200,30,'C','GREY')));
+	this.grids.push((new CellGrid(0,200,30,'C','BLUE',true)));
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 + (106*i),200,30,this.circleOfFifthsKeys.pop(),'GREY'));
+      this.grids.push(new CellGrid(0 + (106*i),200,30,this.circleOfFifthsKeys.pop(),'BLUE',true));
     }
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 - (106*i),200,30,this.circleOfFifthsKeys.pop(),'GREY'));
+      this.grids.push(new CellGrid(0 - (106*i),200,30,this.circleOfFifthsKeys.pop(),'BLUE',true));
     }
     return this.grids;
   }
