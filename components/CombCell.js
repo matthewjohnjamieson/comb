@@ -32,7 +32,6 @@ class CellView extends Displayable{
 
 	this.isHighlighted = false;
 	this.isInBottomGrid = isInBottomGrid;
-	this.isOn = false;
 	if(this.isInBottomGrid){
 	  this.isOn = false;
 	  console.log('button is not on');
@@ -89,7 +88,7 @@ class CellView extends Displayable{
       stroke('GREEN');
     }
 	else{
-      stroke(125);//background color
+      stroke('BLACK');//background color
 	}
     //stroke color logic
 	
@@ -190,10 +189,10 @@ class CellController{
 	
 	if(this.cellView.isInBottomGrid){
       if(historyy.search(this.cellModel.chord)){
-        this.isOn = true;
+        this.cellView.isOn = true;
 	  }
 	  else{
-        this.isOn = false;
+        this.cellView.isOn = false;
 	  }
     }
   }

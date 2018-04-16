@@ -19,7 +19,8 @@ class ChordHistory {
 
 	search(chord) {
 		for(let i = 0; i < this.chordArray.length; i++) {
-			if (this.chordArray == chord) {
+			if (this.chordArray[i].root == chord.root && this.chordArray[i].qual == chord.qual) {
+				console.log('history.search() passed')
 				return true; //returns true if chord is found
 			}
 		}

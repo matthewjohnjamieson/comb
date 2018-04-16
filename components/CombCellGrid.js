@@ -16,8 +16,8 @@ class CellGrid extends Displayable{
     this.key = key;
     this.cellSize = cellSize;
     this.keyDisplayColor = keyDisplayColor; // plug in hue value?
-    this.cells = this.makeCells();
 	this.isBottomGrid = isBottomGrid;
+	this.cells = this.makeCells();
   }
   
   //builds a grid of displayable cells starting from the middle of the grid
