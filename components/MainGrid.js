@@ -17,7 +17,7 @@ class MainGrid{
     this.colorWheel = ['#E8B63A','#7C3F03']; // change the % mod in buildMainGrid
 	//this.colorWheel = ['RED','GREEN','BLUE'];
     //this.reverseColorWheel = ['RED','BLUE','GREEN']; //rbg
-	this.reverseColorWheel = ['#E8B63A','#7C3F03']; // change the % mod in buildMainGrid
+	this.blackYellowWheel = ['BLACK','YELLOW']; // change the % mod in buildMainGrid
 	//yellow = '#E8B63A'
 	//brown = '#7C3F03'
 	this.grids = [];
@@ -29,15 +29,15 @@ class MainGrid{
       this.grids.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2],false));
     }
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2],false));
+      this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2],false));
     }
 	
-	this.grids.push((new CellGrid(0,200,30,'C','BLUE',true)));
+	this.grids.push((new CellGrid(0,200,30,'C','BLACK',true)));
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 + (106*i),200,30,this.circleOfFifthsKeys.pop(),'BLUE',true));
+      this.grids.push(new CellGrid(0 + (106*i),200,30,this.circleOfFifthsKeys.pop(),this.blackYellowWheel[i%2],true));
     }
     for(var i = 1; i <= 6; i++){
-      this.grids.push(new CellGrid(0 - (106*i),200,30,this.circleOfFifthsKeys.pop(),'BLUE',true));
+      this.grids.push(new CellGrid(0 - (106*i),200,30,this.circleOfFifthsKeys.pop(),this.blackYellowWheel[i%2],true));
     }
     return this.grids;
   }

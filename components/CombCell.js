@@ -68,12 +68,6 @@ class CellView extends Displayable{
   //draw user viewable layer
   //going to have to edit this function if we want gradient colors VF
   display(){
-    /* if(this.isInBottomGrid){
-      if(historyy.search())
-      this.isOn = false;
-      
-    } */
-    
     //stroke color logic
     if(this.isHighlighted){
       stroke('MAGENTA'); //turn outlines back on for hex display //white with text not outlined, saturated mag or purp, 
@@ -84,8 +78,8 @@ class CellView extends Displayable{
 	else if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
       stroke('#7C3F03');//brown border
 	}
-	else if(this.isInBottomGrid && this.isOn){
-      stroke('GREEN');
+	else if(this.isInBottomGrid && this.isOn && this.tempDisplayColor == 'BLACK'){
+      stroke('YELLOW');
     }
 	else{
       stroke('BLACK');//background color
@@ -107,13 +101,24 @@ class CellView extends Displayable{
     
 	//text fill color logic
     if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
-	  fill('#7C3F03'); //text fill color (brown)
+      if(this.displayColor == 'BLACK'){
+        fill('#E8B63A'); //text fill yellow is easier to see when hexagon fill is black
+      }
+	  else{
+        fill('#7C3F03'); //text fill color (brown)
+	  }
 	}
 	else if(this.tempDisplayColor == '#7C3F03'){ //if color is brown
 	  fill('#E8B63A'); //text fill color (yellow)
 	}
     else if(this.isInBottomGrid && this.isOn){
-      fill('BLACK');
+      if(this.tempDisplayColor == 'BLACK'){
+        fill('YELLOW');
+		noStroke();
+      }
+	  else{
+        fill('BLACK');  
+      }
     }
 	else{
       fill(125);//background color
@@ -156,6 +161,9 @@ class CellController{
         && (this.isClicked === false) && (this.cellView.isOn)){
     
       this.cellView.displayColor = 'BLACK';
+	  if(this.cellView.isInBottomGrid){
+          this.cellView.displayColor = 'MAGENTA';
+      }
       this.cellModel.chord.play();
 	  if(!this.cellView.isInBottomGrid){
         historyy.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
@@ -186,8 +194,8 @@ class CellController{
       //this.isClicked = false;
       //this.eventClickedMouseOver();  
     }
-	
-	if(this.cellView.isInBottomGrid){
+
+	if(mouseIsPressed && this.cellView.isInBottomGrid){
       if(historyy.search(this.cellModel.chord)){
         this.cellView.isOn = true;
 	  }
