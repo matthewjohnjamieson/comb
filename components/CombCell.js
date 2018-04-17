@@ -91,7 +91,7 @@ class CellView extends Displayable{
       fill(this.displayColor);
     }
 	else{
-      fill('#F1D388')//background color
+      fill('#917319')//background color
     }
 	//fill color logic
 	
@@ -121,8 +121,8 @@ class CellView extends Displayable{
       }
     }
 	else{
-      fill('#F1D388');//background color
-	  stroke('#F1D388');
+      fill('#917319');//background color
+	  stroke('#917319');
     }
 	//text fill color logic
 	
