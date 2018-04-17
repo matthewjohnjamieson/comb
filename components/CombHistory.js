@@ -9,6 +9,8 @@ stores the array of chord progression in global array
 class ChordHistory {
 	constructor() {
 		this.chordArray = [];
+		let myJson = {"chords":this.chordArray};
+		let newJson = null;
 	}
 
 	addElement(root,qual,synth) {
@@ -42,11 +44,17 @@ class ChordHistory {
 	}
 
 	save() {
-
+		saveJSON(this.myJson,comb.json);
 	}
 
-	load() {
+	load(newChords) {
+		newJson = loadJson(newChords);
+		let currentID = this.chordArray.length;
 
+		//loads chords at the end of what has already be saved in chordArray
+		for(let i = 0; i < this.newJson.chords.length; i++) {
+			this.chordArray[currentID + i] = newJson.chords[i]; //Assumes it is in the same format it is saved in
+		}
 	}
 
 	/*loadMidi() {

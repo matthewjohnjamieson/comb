@@ -185,7 +185,7 @@ class CellController{
             ||(!mouseIsPressed && (this.isClicked === true))){ 
       
       this.cellView.displayColor = this.tempDisplayColor; //change to stored color
-      this.cellModel.chord.stop();
+      //this.cellModel.chord.stop();
       this.isClicked = false;
     }
     else if(mouseIsPressed
@@ -215,7 +215,6 @@ class CellModel{
   }
 }
 
-
 //wrapper class for cell components
 //functions as a public API object in order to hide MVC implimentation
 class Cell extends Clickable{
@@ -227,11 +226,12 @@ class Cell extends Clickable{
   }
 
   resetisclicked(){
-    this.cellController.isClicked = false;
+    this.cellController.isClicked = false;    
   }
   
   resetIsHighlighted(){
     this.cellView.isHighlighted = false;
+    this.cellModel.chord.stop();
   }
 
   displayMap(){

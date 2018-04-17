@@ -30,6 +30,7 @@ class MainGrid{
     }
     for(var i = 1; i <= 6; i++){
       this.grids.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2],false));
+
     }
 	
 	this.grids.push((new CellGrid(0,200,30,'C','BLACK',true)));
