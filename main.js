@@ -11,27 +11,37 @@ let map;
 function setup() {
   pixelDensity(1); // set pix density for high dens displays
   frameRate(30); //changed from 30
+  
   createCanvas(windowWidth, windowHeight); //changed added windowWidth, windowHeight insted of 
   //colorMode(HSB, 255);
+  translate((width/2), (height/2));
+  
   let mainGrid = new MainGrid();
   let isThisVarNeeded = mainGrid.buildMainGrid();
   screens[0] = new Screen(128, isThisVarNeeded); //main grid
-  
+  scale(0.87); //scale the grid down just a little bit
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
   screens[0].display();
 }
 
 function draw() {
-  if(mouseIsPressed){
-    screens[0].display();
+  if(mouseIsPressed){    
+  translate((width/2), (height/2));
+  scale(0.87); //scale the grid down just a little bit  
+  screens[0].display();
   }
 }
 
 function windowResized() { // added new just for resize
   resizeCanvas(windowWidth, windowHeight);
-  screens[(screens[1] ? 1 : 0)].displayMap();
+  //scale(0.90);
+  translate((width/2), (height/2));
+  scale(0.87); //scale the grid down just a little bit
+  screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
+  screens[0].display();
+
 }
 
 //this function is called every time the mouse is released

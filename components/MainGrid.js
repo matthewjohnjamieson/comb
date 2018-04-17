@@ -21,12 +21,12 @@ class MainGrid{
   }
   
   buildMainGrid(){
-    var tempArray = [(new CellGrid(width/2,height/2,30,'C','#E8B63A'))];
+    var tempArray = [(new CellGrid(0,0,30,'C','#E8B63A'))];
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(width/2 + (106*i),height/2,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2]));
+      tempArray.push(new CellGrid(0 + (106*i),0,30,this.circleOfFifthsKeys.pop(),this.colorWheel[i%2]));
     }
     for(var i = 1; i <= 6; i++){
-      tempArray.push(new CellGrid(width/2 - (106*i),height/2,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2]));
+      tempArray.push(new CellGrid(0 - (106*i),0,30,this.circleOfFifthsKeys.pop(),this.reverseColorWheel[i%2]));
     }
     return tempArray;
   }
