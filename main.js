@@ -7,7 +7,8 @@ main for Comb project.
 let currentScreen = 0;
 let screens = [];
 let map;
-let history = new ChordHistory();
+let historyy = new ChordHistory(); 
+// history may possibly be a reserved key word https://www.w3schools.com/js/js_reserved.asp
 
 
 function setup() {
@@ -21,7 +22,8 @@ function setup() {
   let mainGrid = new MainGrid();
   let isThisVarNeeded = mainGrid.buildMainGrid();
   screens[0] = new Screen(128, isThisVarNeeded); //main grid
-  scale(0.87); //scale the grid down just a little bit
+
+  scale(0.87);
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
   screens[0].display();
@@ -30,7 +32,9 @@ function setup() {
 function draw() {
   if(mouseIsPressed){    
   translate((width/2), (height/2));
-  scale(0.87); //scale the grid down just a little bit  
+
+  scale(0.87);  
+
   screens[0].display();
   }
 }
@@ -39,7 +43,9 @@ function windowResized() { // added new just for resize
   resizeCanvas(windowWidth, windowHeight);
   //scale(0.90);
   translate((width/2), (height/2));
-  scale(0.87); //scale the grid down just a little bit
+
+  scale(0.87);
+
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
   screens[0].display();
@@ -51,6 +57,7 @@ function mouseReleased(){
   screens[0].resetisclicked();// reset the event triggers on all cells.
   if(colortonumber(colorUnderMouse()) == colortonumber("GREY")){
     screens[0].resetIsHighlighted();
+	historyy.clear();
   }
 
 }
