@@ -113,6 +113,8 @@ class CellController{
     
       this.cellView.displayColor = 'BLACK';
       this.cellModel.chord.play();
+      history.addElement(this.cellModel.chord.root,this.cellModel.chord.qual, 
+                            this.cellModel.chord.synth);
       let bin = 0; 
       //console.log( color(this.cellView.mapColor) );
       // console.log( (red(this.cellView.mapColor)
