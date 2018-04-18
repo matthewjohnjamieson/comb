@@ -45,8 +45,8 @@ class CellGrid extends Displayable{
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
-                                       new Synth()),
-				  thisObject.isBottomGrid);
+                                       globalsynth),
+				          thisObject.isBottomGrid);
     }
 
     

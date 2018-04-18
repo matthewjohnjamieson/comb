@@ -9,7 +9,7 @@ let screens = [];
 let map;
 let historyy = new ChordHistory(); 
 // history may possibly be a reserved key word https://www.w3schools.com/js/js_reserved.asp
-
+let globalsynth = new Synth();
 
 function setup() {
   pixelDensity(1); // set pix density for high dens displays

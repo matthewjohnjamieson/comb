@@ -14,6 +14,13 @@ class ChordHistory {
 	}
 
 	addElement(root,qual,synth) {
+		let temp = new Chord(root,qual,synth);
+
+
+
+		if(this.search(temp) === true)
+			console.log( this.remove(temp) );
+
 		this.chordArray.push(new Chord(root,qual,synth));
 		console.log(this.chordArray);
 		console.log(this.chordArray.length);
