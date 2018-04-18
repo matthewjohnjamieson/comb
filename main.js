@@ -21,7 +21,7 @@ function setup() {
   
   let mainGrid = new MainGrid();
   let isThisVarNeeded = mainGrid.buildMainGrid();
-  screens[0] = new Screen('#4a9590', isThisVarNeeded); //main grid
+  screens[0] = new Screen('#15414b', isThisVarNeeded); //main grid
 
   scale(0.87);
   screens[0].displayMap();
@@ -55,7 +55,7 @@ function windowResized() { // added new just for resize
 //this function is called every time the mouse is released
 function mouseReleased(){
   screens[0].resetisclicked();// reset the event triggers on all cells.
-  if(colortonumber(colorUnderMouse()) == colortonumber("#4a9590")){
+  if(colortonumber(colorUnderMouse()) == colortonumber("#15414b")){
     screens[0].resetIsHighlighted();
 	historyy.clear();
   }
