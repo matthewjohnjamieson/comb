@@ -78,11 +78,11 @@ class CellView extends Displayable{
 	else if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
       stroke('#7C3F03');//brown border
 	}
-	else if(this.isInBottomGrid && this.isOn && this.tempDisplayColor == 'BLACK'){
+	else if(this.isInBottomGrid && this.isOn && this.tempDisplayColor == '#b72b3d'){
       stroke('YELLOW');
     }
 	else{
-      stroke('BLACK');//background color
+      stroke('WHITE');//background color
 	}
     //stroke color logic
 	
@@ -91,7 +91,7 @@ class CellView extends Displayable{
       fill(this.displayColor);
     }
 	else{
-      fill(125)//background color
+      fill('#15414b')//background color
     }
 	//fill color logic
 	
@@ -102,7 +102,7 @@ class CellView extends Displayable{
 	//text fill color logic
     if(this.tempDisplayColor == '#E8B63A'){ //if color is yellow
       if(this.displayColor == 'BLACK'){
-        fill('#E8B63A'); //text fill yellow is easier to see when hexagon fill is black
+        fill('#E8B63A'); //text fill yellow is easier to see when a yellow hexagon fill is black (being clicked on
       }
 	  else{
         fill('#7C3F03'); //text fill color (brown)
@@ -112,17 +112,18 @@ class CellView extends Displayable{
 	  fill('#E8B63A'); //text fill color (yellow)
 	}
     else if(this.isInBottomGrid && this.isOn){
-      if(this.tempDisplayColor == 'BLACK'){
+      if(this.tempDisplayColor == '#b72b3d'){
         fill('YELLOW');
 		noStroke();
       }
 	  else{
-        fill('BLACK');  
+        fill('YELLOW');  
+		noStroke();
       }
     }
 	else{
-      fill(125);//background color
-	  stroke(125);
+      fill('#15414b');//background color
+	  stroke('#15414b');
     }
 	//text fill color logic
 	
