@@ -1,21 +1,20 @@
-
 /*
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
-
 
 DEPENDS ON: CombCell.js
 */
 
 class CellGrid extends Displayable{
-  constructor(x,y,cellSize,key,keyDisplayColor){
+  constructor(x,y,cellSize,key,keyDisplayColor,isBottomGrid){
     super();
     this.x = x;//x and y positions of the center (V chord) cell
     this.y = y;
     this.SPACING = 1.77; //space between cells in grid
     this.key = key;
     this.cellSize = cellSize;
-	  this.keyDisplayColor = keyDisplayColor; // plug in hue value?
+    this.keyDisplayColor = keyDisplayColor; // plug in hue value?
+    this.isBottomGrid = isBottomGrid;
     this.cells = this.makeCells();
   }
   
@@ -40,11 +39,12 @@ class CellGrid extends Displayable{
                   cellX,
                   cellY,
                   thisObject.cellSize,
-                  thisObject.keyDisplayColor, //change display color here? probably need array or class to have different colors
+                  thisObject.keyDisplayColor, 
                   null,
                   new Chord(keys[(keyIndex + offsets.pop()) % keys.length], //assign a chord to the cell
                                        quals.pop(),
-                                       new Synth()));
+                                       globalsynth),
+				          thisObject.isBottomGrid);
     }
 
     
@@ -93,11 +93,9 @@ class CellGrid extends Displayable{
   //push() and pop() are needed here to return the draw point to default (or whatever it was before) 
   display(){
     push(); // saves the current draw point
-    
     translate(this.x,this.y);//put the grid where it's at
     //rotate(-PI/6);
     this.cells.map(cell => cell.display());
-
     pop(); // returns the draw point to when it was saved.
   }
 }
