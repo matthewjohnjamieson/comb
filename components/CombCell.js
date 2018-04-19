@@ -34,11 +34,11 @@ class CellView extends Displayable{
 	this.isInBottomGrid = isInBottomGrid;
 	if(this.isInBottomGrid){
 	  this.isOn = false;
-	  console.log('button is not on');
+	  //console.log('button is not on');
 	}
 	else{
 	  this.isOn = true;
-	  console.log('button is on');
+	  //console.log('button is on');
 	}
 	//this.isSecondGrid = false;
   }

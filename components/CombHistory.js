@@ -4,8 +4,6 @@ Stores the progression in an array
 stores the array of chord progression in global array
 */
 
-
-
 class ChordHistory {
 	constructor() {
 		this.chordArray = [];
@@ -19,31 +17,34 @@ class ChordHistory {
 
 
 		if(this.search(temp) === true)
-			console.log( this.remove(temp) );
+			console.log( this.remove(temp));
 
-		this.chordArray.push(new Chord(root,qual,synth));
+		this.chordArray.unshift(new Chord(root,qual,synth));
+		
 		console.log(this.chordArray);
 		console.log(this.chordArray.length);
 	}
 
 	search(chord) {
 		for(let i = 0; i < this.chordArray.length; i++) {
-			if (this.chordArray[i].root == chord.root && this.chordArray[i].qual == chord.qual) {
-				console.log('history.search() passed')
+			if (this.chordArray[i].root === chord.root && this.chordArray[i].qual === chord.qual) {
+				//console.log('history.search() passed')
 				return true; //returns true if chord is found
 			}
 		}
-		console.log('history.search() failed')
+		//console.log('history.search() failed')
 		return false; //returnd false if chord can not be found
 	}
 
 	remove(chord) {
 		for(let i = 0; i < this.chordArray.length; i++) {
-			if (this.chordArray == chord) {
+			
+			if (this.chordArray[i].root === chord.root && this.chordArray[i].qual === chord.qual) {
 				let removed = this.chordArray.splice(i,1);
-				if(this.removed.length == 0) {
-					return false; //returns false if chord found but not removed
-				}
+				console.log("removed: ", removed);				
+				//if(this.removed.length == 0) {
+				//	return false; //returns false if chord found but not removed
+				//}
 				return true;  //returns true is chord removed
 			}
 		}
