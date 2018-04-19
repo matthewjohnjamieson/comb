@@ -1,8 +1,6 @@
-
 /*
 collection of cells into a grid.
 The central lower cluster cell is the initial draw point for the grid.
-
 
 DEPENDS ON: CombCell.js
 */
@@ -95,11 +93,9 @@ class CellGrid extends Displayable{
   //push() and pop() are needed here to return the draw point to default (or whatever it was before) 
   display(){
     push(); // saves the current draw point
-    
     translate(this.x,this.y);//put the grid where it's at
     //rotate(-PI/6);
     this.cells.map(cell => cell.display());
-
     pop(); // returns the draw point to when it was saved.
   }
 }

@@ -12,16 +12,13 @@ let historyy = new ChordHistory();
 let globalsynth = new Synth();
 
 function setup() {
-  pixelDensity(1); // set pix density for high dens displays
-  frameRate(30); //changed from 30
-  
-  createCanvas(windowWidth, windowHeight); //changed added windowWidth, windowHeight insted of 
-  translate((width/2), (height/2));
-  
+  pixelDensity(1); //set pix density for high dens displays
+  frameRate(30);
+  createCanvas(windowWidth, windowHeight);
+  translate((width/2), (height/2));  
   let mainGrid = new MainGrid();
   let isThisVarNeeded = mainGrid.buildMainGrid();
   screens[0] = new Screen('#15414b', isThisVarNeeded); //main grid
-
   scale(0.87);
   screens[0].displayMap();
   loadPixels(); //load the display into the pixel buffer
@@ -41,7 +38,7 @@ function windowResized() { // added new just for resize
   translate((width/2), (height/2));
   scale(0.87);
   screens[0].displayMap();
-  loadPixels(); //load the display into the pixel buffer
+  loadPixels();
   screens[0].display();
 }
 
@@ -52,5 +49,4 @@ function mouseReleased(){
     screens[0].resetIsHighlighted();
 	  historyy.clear();
   }
-
 }

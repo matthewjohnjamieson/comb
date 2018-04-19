@@ -6,7 +6,7 @@ example: set to -1 to play one octave lower
 class Synth{
   constructor(){
     //console.log("a synth is being built\n");
-    this.OCTSHIFT = 0; // use to change octave
+    this.OCTSHIFT = 0;
     this.voices = [
       (new p5.SinOsc()),
       (new p5.SinOsc()),
